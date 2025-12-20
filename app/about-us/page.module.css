@@ -1,0 +1,186 @@
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pageWrapper {
+    position: relative;
+    /* Optional: hide default cursor if you want only the custom one
+       cursor: none; 
+       Warning: this can be annoying if the custom cursor logic fails. 
+       Use with caution or remove relevant lines in CursorEffect component to not rely on this.
+    */
+}
+
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+.content {
+    line-height: 1.9;
+    color: #444;
+    font-size: 1.05rem;
+    animation: fadeIn 1.2s ease-out;
+}
+
+.content p {
+    margin-bottom: 1.8rem;
+    text-align: justify;
+}
+
+.content strong {
+    color: #222;
+    font-weight: 700;
+    color: #a38348;
+    /* Brand accent color for emphasis */
+}
+
+/* Fundamentals List Styling */
+.fundamentalsList {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+}
+
+.fundamentalsList li {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: #fdfdfd;
+    border-left: 4px solid #a38348;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 0 8px 8px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fundamentalsList li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+    padding-left: 1rem;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.widget {
+    margin-bottom: 3rem;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eee;
+}
+
+.widgetTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #333;
+    border-bottom: 2px solid #a38348;
+    padding-bottom: 0.8rem;
+    display: inline-block;
+}
+
+.searchForm {
+    display: flex;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.searchInput {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #a38348;
+}
+
+.searchButton {
+    padding: 0.8rem 1.5rem;
+    background: #a38348;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.searchButton:hover {
+    background: #8e713d;
+}
+
+.categoryList {
+    list-style: none;
+    padding: 0;
+}
+
+.categoryList li {
+    margin-bottom: 0;
+}
+
+.categoryList a {
+    color: #555;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.categoryList a:before {
+    content: "›";
+    margin-right: 10px;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: #a38348;
+    transition: transform 0.3s;
+}
+
+.categoryList a:hover {
+    color: #a38348;
+    padding-left: 5px;
+}
+
+.categoryList a:hover:before {
+    transform: translateX(3px);
+}
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .sidebar {
+        padding-left: 0;
+        margin-top: 1rem;
+        border-top: none;
+        padding-top: 0;
+    }
+
+
+}

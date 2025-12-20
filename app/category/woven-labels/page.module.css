@@ -1,0 +1,172 @@
+.pageHeader {
+    background-color: #333;
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://zatraders.pk/wp-content/uploads/2023/12/Ribbon-Sattan-Label-500x500-1.jpg') no-repeat center center;
+    background-size: cover;
+    margin-bottom: 3rem;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.breadcrumb {
+    font-size: 1rem;
+    color: #eee;
+    font-weight: 500;
+}
+
+.breadcrumb span {
+    margin: 0 0.5rem;
+}
+
+.breadcrumb a:hover {
+    color: #a38348;
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.noProducts {
+    text-align: center;
+    padding: 3rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.sidebar {
+    padding-left: 2rem;
+}
+
+.widget {
+    margin-bottom: 2.5rem;
+}
+
+.widgetTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.searchForm {
+    display: flex;
+}
+
+.searchInput {
+    flex: 1;
+    padding: 0.7rem;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.searchButton {
+    padding: 0.7rem 1.2rem;
+    background: #a38348;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.categoryList {
+    list-style: none;
+    padding: 0;
+}
+
+.categoryList li {
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid #f5f5f5;
+    padding-bottom: 0.5rem;
+}
+
+.categoryList a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.categoryList a:before {
+    content: "›";
+    margin-right: 8px;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: #ccc;
+}
+
+.categoryList a:hover {
+    color: #a38348;
+}
+
+.activeCategory {
+    color: #a38348 !important;
+    font-weight: 600;
+}
+
+.pagination {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.pageLink {
+    padding: 0.8rem 1.2rem;
+    border: 1px solid #e1e1e1;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.pageLink:hover {
+    background-color: #a38348;
+    border-color: #a38348;
+    color: white;
+}
+
+.activePage {
+    background-color: #a38348;
+    color: white;
+    border-color: #a38348;
+}
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        padding-left: 0;
+        margin-top: 3rem;
+        border-top: 1px solid #eaeaea;
+        padding-top: 3rem;
+    }
+}

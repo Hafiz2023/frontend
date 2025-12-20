@@ -1,0 +1,186 @@
+.pageContainer {
+    width: 100%;
+}
+
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/printed-tags-banner.png') center/cover no-repeat;
+    padding: 6rem 2rem;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 4rem;
+    border-bottom: 4px solid #a38348;
+}
+
+.heroTitle {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.breadcrumb {
+    color: #ddd;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.breadcrumb a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: #a38348;
+}
+
+.contentContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 4rem;
+}
+
+.imageWrapper {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border: 1px solid #eee;
+}
+
+.productImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.imageWrapper:hover .productImage {
+    transform: scale(1.03);
+}
+
+.detailsWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.productTitle {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.productCategory {
+    color: #a38348;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.description ul {
+    list-style-position: inside;
+    margin-top: 1rem;
+}
+
+.description li {
+    margin-bottom: 0.5rem;
+}
+
+.actionButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.primaryButton,
+.secondaryButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.primaryButton {
+    background-color: #a38348;
+    color: #fff;
+    border: 2px solid #a38348;
+}
+
+.primaryButton:hover {
+    background-color: transparent;
+    color: #a38348;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(163, 131, 72, 0.2);
+}
+
+.secondaryButton {
+    background-color: transparent;
+    color: #333;
+    border: 2px solid #333;
+}
+
+.secondaryButton:hover {
+    background-color: #333;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.contactInfo {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #555;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.icon {
+    margin-right: 1rem;
+    color: #a38348;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 900px) {
+    .contentContainer {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .heroTitle {
+        font-size: 2rem;
+    }
+}
