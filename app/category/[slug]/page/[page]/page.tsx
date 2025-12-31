@@ -98,6 +98,18 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
     // Sidebar categories
     const allCategories = getAllCategories();
 
+    // Determine background image based on category
+    let bgImage = "/hero-bg.png";
+    if (slug === 'leather-patches') {
+        bgImage = "/LeartherTags/leather-patches-collection.jpg";
+    } else if (slug === 'printed-tags' || slug === 'hang-tags') {
+        bgImage = "/printed-tags-banner.png";
+    } else if (slug === 'paper-bags') {
+        bgImage = "/tag-kraft-minimal.png";
+    } else if (slug === 'woven-labels') {
+        bgImage = "/tag-fabric-white.png";
+    }
+
     return (
         <div>
             <PageHeader
@@ -106,7 +118,7 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
                     { label: categoryDisplayName, href: `/category/${slug}/page/1` },
                     { label: `Page ${pageNum}` }
                 ]}
-                backgroundImage="/hero-bg.png"
+                backgroundImage={bgImage}
             />
 
             <div className={styles.container}>
