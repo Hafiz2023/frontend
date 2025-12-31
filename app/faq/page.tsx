@@ -79,7 +79,7 @@ export default function FAQPage() {
             <div className={styles.ctaSection}>
                 <h2 className={styles.ctaTitle}>Still have questions?</h2>
                 <p className={styles.ctaText}>
-                    Can't find the answer you're looking for? Please contact our friendly team.
+                    Can&apos;t find the answer you&apos;re looking for? Please contact our friendly team.
                 </p>
                 <Link href="/contact-us" className={styles.contactBtn}>
                     Get in Touch

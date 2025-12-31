@@ -13,9 +13,18 @@ async function fetchApiProducts(categorySlug: string) {
         if (!res.ok) return [];
         const data = await res.json();
         return data.length > 0 ? data : null;
-    } catch (e) {
+    } catch {
         return null;
     }
+}
+
+interface Product {
+    id: number;
+    title: string;
+    category: string;
+    image?: string;
+    imageSrc?: string;
+    slug: string;
 }
 
 export default async function PrintedTagsPage() {
@@ -23,7 +32,7 @@ export default async function PrintedTagsPage() {
     const pageNum = 1;
 
     // 1. Try Fetching from API
-    let products = [];
+    let products: Product[] = [];
 
     const apiData = await fetchApiProducts(categorySlug);
 
@@ -38,7 +47,13 @@ export default async function PrintedTagsPage() {
     } else {
         // 2. Fallback
         const { data } = getMockProducts(categorySlug, pageNum, 9);
-        products = data;
+        products = data.map((d: any) => ({
+            id: d.id,
+            title: d.title,
+            category: d.category,
+            imageSrc: d.imageSrc,
+            slug: d.slug
+        }));
     }
 
     const allCategories = getAllCategories();
@@ -55,12 +70,12 @@ export default async function PrintedTagsPage() {
                 <main>
                     {products.length > 0 ? (
                         <div className={styles.grid}>
-                            {products.map((product: any) => (
+                            {products.map((product) => (
                                 <ProductCard
                                     key={product.id}
                                     title={product.title}
                                     category={product.category}
-                                    imageSrc={product.image || (product as any).imageSrc}
+                                    imageSrc={product.image || product.imageSrc || ''}
                                     slug={product.slug}
                                     baseUrl="/printed-tags"
                                 />
