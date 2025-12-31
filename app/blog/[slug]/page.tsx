@@ -23,22 +23,22 @@ const blogPosts: Record<string, BlogPostData> = {
         content: (
             <>
                 <p>
-                    In the vibrant and competitive world of fashion, every detail contributes to a brand's narrative and perceived value. While design, fabric, and fit often take center stage, there's a small yet mighty component that quietly shapes a brand's image and customer perception: the woven label. Far from being a mere tag, a well-crafted woven label is a powerful tool for establishing brand identity, communicating quality, and fostering customer loyalty.
+                    In the vibrant and competitive world of fashion, every detail contributes to a brand&apos;s narrative and perceived value. While design, fabric, and fit often take center stage, there&apos;s a small yet mighty component that quietly shapes a brand&apos;s image and customer perception: the woven label. Far from being a mere tag, a well-crafted woven label is a powerful tool for establishing brand identity, communicating quality, and fostering customer loyalty.
                 </p>
 
                 <h2>Beyond Identification: Strengthening Brand Identity</h2>
                 <p>
-                    Woven labels serve as miniature brand ambassadors, carrying your logo, name, and brand message directly onto your products. When customers repeatedly encounter a finely stitched label on a garment or accessory, it reinforces your brand's identity in their minds, making your product instantly more memorable. This consistent visual cue builds brand trust and helps your brand stand out in a saturated market.
+                    Woven labels serve as miniature brand ambassadors, carrying your logo, name, and brand message directly onto your products. When customers repeatedly encounter a finely stitched label on a garment or accessory, it reinforces your brand&apos;s identity in their minds, making your product instantly more memorable. This consistent visual cue builds brand trust and helps your brand stand out in a saturated market.
                 </p>
 
                 <h2>A Touch of Quality: Elevating Perceived Value</h2>
                 <p>
-                    One of the most significant advantages of woven labels is their ability to convey a sense of premium quality and professionalism. Unlike printed labels that can look cheap, fade, or tear, woven labels offer a textured, luxurious finish that customers instinctively associate with higher craftsmanship and attention to detail. This subtle detail can elevate a product from "basic" to "boutique," justifying higher price points and instilling confidence in the purchase.
+                    One of the most significant advantages of woven labels is their ability to convey a sense of premium quality and professionalism. Unlike printed labels that can look cheap, fade, or tear, woven labels offer a textured, luxurious finish that customers instinctively associate with higher craftsmanship and attention to detail. This subtle detail can elevate a product from &quot;basic&quot; to &quot;boutique,&quot; justifying higher price points and instilling confidence in the purchase.
                 </p>
 
                 <h2>Built to Last: Durability and Longevity</h2>
                 <p>
-                    Woven labels are renowned for their exceptional durability. Crafted by interlacing threads, they are designed to withstand repeated washing, ironing, and wear without fading, fraying, or peeling. This ensures that your brand's image remains intact throughout the product's lifecycle, maintaining its professional appearance even after years of use.
+                    Woven labels are renowned for their exceptional durability. Crafted by interlacing threads, they are designed to withstand repeated washing, ironing, and wear without fading, fraying, or peeling. This ensures that your brand&apos;s image remains intact throughout the product&apos;s lifecycle, maintaining its professional appearance even after years of use.
                 </p>
 
                 <h3>Key Benefits at a Glance:</h3>

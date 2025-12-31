@@ -15,7 +15,7 @@ async function fetchApiProducts(categorySlug: string) {
         if (!res.ok) return [];
         const data = await res.json();
         return data.length > 0 ? data : null;
-    } catch (e) {
+    } catch {
         return null;
     }
 }
@@ -23,6 +23,15 @@ async function fetchApiProducts(categorySlug: string) {
 export async function generateStaticParams() {
     // Generate just a few pages statically
     return [{ page: '1' }, { page: '2' }, { page: '3' }];
+}
+
+interface Product {
+    id: number | string;
+    title: string;
+    category: string;
+    image?: string;
+    imageSrc?: string;
+    slug: string;
 }
 
 export default async function LeatherPatchesPaginationPage({ params }: { params: Promise<{ page: string }> }) {
@@ -35,9 +44,9 @@ export default async function LeatherPatchesPaginationPage({ params }: { params:
     }
 
     // 1. Try Fetching from API
-    let products = [];
+    let products: Product[] = [];
     let totalPages = 1;
-    let itemsPerPage = 9;
+    const itemsPerPage = 9;
 
     const apiData = await fetchApiProducts(categorySlug);
 
@@ -59,7 +68,13 @@ export default async function LeatherPatchesPaginationPage({ params }: { params:
     } else {
         // 2. Fallback
         const { data, totalPages: mockTotal } = getMockProducts(categorySlug, pageNum, itemsPerPage);
-        products = data;
+        products = data.map((d: any) => ({
+            id: d.id,
+            title: d.title,
+            category: d.category,
+            image: d.image,
+            slug: d.slug
+        }));
         totalPages = mockTotal;
     }
 
@@ -84,12 +99,12 @@ export default async function LeatherPatchesPaginationPage({ params }: { params:
                 <main>
                     {products.length > 0 ? (
                         <div className={styles.grid}>
-                            {products.map((product: any) => (
+                            {products.map((product) => (
                                 <ProductCard
                                     key={product.id}
                                     title={product.title}
                                     category={product.category}
-                                    imageSrc={product.image || product.imageSrc}
+                                    imageSrc={product.image || product.imageSrc || ''}
                                     slug={product.slug}
                                     baseUrl="/leather-patches"
                                 />

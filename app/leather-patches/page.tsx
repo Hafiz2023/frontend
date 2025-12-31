@@ -20,7 +20,7 @@ async function fetchApiProducts(categorySlug: string) {
 }
 
 interface Product {
-    id: number;
+    id: number | string;
     title: string;
     category: string;
     image?: string;
@@ -48,11 +48,11 @@ export default async function LeatherPatchesPage() {
     } else {
         // 2. Fallback
         const { data } = getMockProducts(categorySlug, pageNum, 9);
-        products = data.map((d: any) => ({
+        products = data.map((d) => ({
             id: d.id,
             title: d.title,
             category: d.category,
-            imageSrc: d.imageSrc,
+            image: d.image,
             slug: d.slug
         }));
     }

@@ -19,7 +19,7 @@ async function fetchApiProducts(categorySlug: string) {
 }
 
 interface Product {
-    id: number;
+    id: number | string;
     title: string;
     category: string;
     image?: string;
@@ -48,11 +48,11 @@ export default async function WovenLabelsPage() {
         // 2. Fallback
         const { data } = getMockProducts(categorySlug, pageNum, 9);
         // Cast mock data to Product[] assuming it matches structure or map it
-        products = data.map((d: any) => ({
+        products = data.map((d) => ({
             id: d.id,
             title: d.title,
             category: d.category,
-            imageSrc: d.imageSrc, // Mock data often uses imageSrc
+            image: d.image, // Map correctly
             slug: d.slug
         }));
     }

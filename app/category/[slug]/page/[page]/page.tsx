@@ -27,10 +27,18 @@ async function fetchApiProducts(categorySlug: string) {
         const res = await fetch(`http://127.0.0.1:5000/api/public/products?category=${searchCanvas}`, { cache: 'no-store' });
         if (!res.ok) return [];
         return await res.json();
-    } catch (e) {
-        console.error("API Fetch Error:", e);
+    } catch {
         return [];
     }
+}
+
+interface Product {
+    id: number | string;
+    title: string;
+    category: string;
+    image?: string;
+    imageSrc?: string;
+    slug: string;
 }
 
 export default async function CategoryPaginationPage({ params }: { params: Promise<{ slug: string, page: string }> }) {
@@ -44,7 +52,7 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
     // 1. Fetch from API first
     const apiProducts = await fetchApiProducts(slug);
 
-    let products = [];
+    let products: Product[] = [];
     let totalPages = 1;
     let totalItems = 0;
     const itemsPerPage = 9;
@@ -68,7 +76,16 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
     } else {
         // 2. Fallback to Mock Data
         const { data, totalPages: mockTotal } = getMockProducts(slug, pageNum, itemsPerPage);
-        products = data;
+        products = data.map((d) => ({
+            id: d.id,
+            title: d.title,
+            category: d.category,
+            categorySlug: d.categorySlug,
+            image: d.image,
+            slug: d.slug,
+            price: d.price,
+            description: d.description
+        }));
         totalPages = mockTotal;
     }
 
@@ -96,13 +113,14 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
                 <main>
                     {products.length > 0 ? (
                         <div className={styles.grid}>
-                            {products.map((product: any) => (
+                            {products.map((product) => (
                                 <ProductCard
                                     key={product.id}
                                     title={product.title}
                                     category={product.category}
-                                    imageSrc={product.image || product.imageSrc} // Handle both props if mock uses imageSrc (it actually uses image)
+                                    imageSrc={product.image || product.imageSrc || ''}
                                     slug={product.slug}
+                                    baseUrl={`/category/${slug}`}
                                 />
                             ))}
                         </div>

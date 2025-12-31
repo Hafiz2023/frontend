@@ -14,7 +14,7 @@ async function fetchApiProduct(slug: string) {
         const res = await fetch(`http://127.0.0.1:5000/api/public/products?category=Leather Patches`, { cache: 'no-store' });
         if (!res.ok) return null;
         const data = await res.json();
-        const found = data.find((p: any) => p.slug === slug || p.sku.toLowerCase() === slug.toLowerCase());
+        const found = (data as any[]).find((p) => p.slug === slug || p.sku.toLowerCase() === slug.toLowerCase());
 
         if (found) {
             return {
@@ -27,14 +27,24 @@ async function fetchApiProduct(slug: string) {
             };
         }
         return null;
-    } catch (e) {
+    } catch {
         return null;
     }
 }
 
+interface ProductDetail {
+    id: number | string;
+    title: string;
+    category: string;
+    image: string;
+    slug: string;
+    sku?: string;
+    description?: string;
+}
+
 export default async function LeatherPatchDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    let product: any = getProductBySlug(slug);
+    let product: ProductDetail | undefined | null = getProductBySlug(slug) as ProductDetail | undefined;
 
     if (!product) {
         product = await fetchApiProduct(slug);
