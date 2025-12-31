@@ -16,42 +16,42 @@ export default function ProductsPage() {
         {
             id: 1,
             title: "Woven Labels",
-            image: "https://images.unsplash.com/photo-1627589947847-ac295d70f1a2?auto=format&fit=crop&w=800&q=80",
+            image: "/tag-fabric-white.png",
             slug: "woven-labels",
             description: "High-definition damask labels for a premium, long-lasting brand finish."
         },
         {
             id: 2,
             title: "Hang Tags",
-            image: "https://zatraders.pk/wp-content/uploads/2022/08/Hang-Tags-for-gorge-brothers-500x500-1.jpg",
+            image: "/printed-tags-banner.png",
             slug: "printed-tags",
             description: "Custom printed hang tags in various shapes, sizes, and premium paper stocks."
         },
         {
             id: 3,
             title: "Leather Patches",
-            image: "https://zatraders.pk/wp-content/uploads/2022/08/DW-Fashion-pakistan-500x500-1.jpg",
+            image: "/LeartherTags/leather-patches-collection.jpg",
             slug: "leather-patches",
             description: "Authentic and faux leather patches, perfect for denim and rugged outerwear."
         },
         {
             id: 4,
             title: "Printed Labels",
-            image: "https://zatraders.pk/wp-content/uploads/2022/09/Printed-tag-rija-500x500-1.jpg",
+            image: "/tag-black-gold.png",
             slug: "printed-tags",
             description: "Soft satin and cotton printed labels, ideal for care instructions and branding."
         },
         {
             id: 5,
             title: "Paper Bags",
-            image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80",
+            image: "/tag-kraft-minimal.png",
             slug: "paper-bags",
             description: "Eco-friendly, branded paper bags to give your customers a complete shopping experience."
         },
         {
             id: 6,
             title: "Custom Lace",
-            image: "https://images.unsplash.com/photo-1596464716127-f9a0815779c1?auto=format&fit=crop&w=800&q=80",
+            image: "/tag-fabric-white.png",
             slug: "lace",
             description: "Intricate custom lace designs for fashion embellishments and detailed trimming."
         }
