@@ -1,8 +1,10 @@
 .hero {
+
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://zatraders.pk/wp-content/uploads/2023/04/leather-patches-banner.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/LeartherTags/leather-patches-collection.jpg');
     background-size: cover;
-    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center center;
     padding: 6rem 2rem;
     text-align: center;
     color: white;
