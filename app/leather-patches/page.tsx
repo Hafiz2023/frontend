@@ -65,7 +65,7 @@ export default async function LeatherPatchesPage() {
             <PageHeader
                 title="Leather Patches"
                 breadcrumbs={[{ label: "Leather Patches" }]}
-                backgroundImage="https://zatraders.pk/wp-content/uploads/2023/04/leather-patches-banner.jpg"
+                backgroundImage="/LeartherTags/leather-patches-collection.jpg"
             />
 
             <div className={styles.container}>

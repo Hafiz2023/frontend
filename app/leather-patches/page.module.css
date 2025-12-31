@@ -1,9 +1,8 @@
 /* Page Wrapper */
 .pageWrapper {
-    background: #111;
-    background: linear-gradient(to bottom, #111 0%, #0a0a0a 100%);
+    background: #ffffff;
     min-height: 100vh;
-    color: #e0e0e0;
+    color: #333333;
 }
 
 .container {
@@ -25,11 +24,11 @@
 .noProducts {
     text-align: center;
     padding: 4rem;
-    background: #1a1a1a;
+    background: #f9f9f9;
     border-radius: 8px;
     font-size: 1.2rem;
-    border: 1px dashed #333;
-    color: #888;
+    border: 1px dashed #ddd;
+    color: #666;
 }
 
 /* Sidebar */
@@ -38,19 +37,19 @@
 }
 
 .widget {
-    background: #1a1a1a;
+    background: #f9f9f9;
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid #333;
+    border: 1px solid #eaeaea;
     margin-bottom: 2rem;
 }
 
 .widgetTitle {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #fff;
+    color: #333;
     margin-bottom: 1.5rem;
-    border-bottom: 2px solid #c9a14a;
+    border-bottom: 2px solid #a38348;
     padding-bottom: 0.8rem;
     display: inline-block;
 }
@@ -62,11 +61,11 @@
 
 .categoryList li {
     padding: 0.8rem 0;
-    border-bottom: 1px dashed #333;
+    border-bottom: 1px dashed #eaeaea;
 }
 
 .categoryList a {
-    color: #999;
+    color: #555;
     text-decoration: none;
     transition: all 0.3s;
     display: flex;
@@ -76,18 +75,18 @@
 .categoryList a:before {
     content: "›";
     margin-right: 10px;
-    color: #c9a14a;
+    color: #a38348;
     font-size: 1.4rem;
     line-height: 1;
 }
 
 .categoryList a:hover {
-    color: #c9a14a;
+    color: #a38348;
     padding-left: 5px;
 }
 
 .activeCategory {
-    color: #c9a14a !important;
+    color: #a38348 !important;
     font-weight: 600;
 }
 
@@ -99,22 +98,22 @@
 .searchInput {
     flex: 1;
     padding: 0.8rem;
-    background: #111;
-    border: 1px solid #333;
-    color: #fff;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
     border-right: none;
     border-radius: 4px 0 0 4px;
     outline: none;
 }
 
 .searchInput:focus {
-    border-color: #c9a14a;
+    border-color: #a38348;
 }
 
 .searchButton {
     padding: 0.8rem 1.5rem;
-    background: #c9a14a;
-    color: #000;
+    background: #a38348;
+    color: #fff;
     border: none;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
@@ -123,7 +122,7 @@
 }
 
 .searchButton:hover {
-    background: #e0b454;
+    background: #8d7045;
 }
 
 /* Pagination */
@@ -140,9 +139,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #333;
-    background: #1a1a1a;
-    color: #ccc;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #555;
     text-decoration: none;
     border-radius: 4px;
     transition: all 0.2s;
@@ -150,20 +149,20 @@
 }
 
 .pageLink:hover {
-    border-color: #c9a14a;
-    color: #c9a14a;
+    border-color: #a38348;
+    color: #a38348;
 }
 
 .activePage {
-    background: #c9a14a;
-    color: #000;
-    border-color: #c9a14a;
+    background: #a38348;
+    color: #fff;
+    border-color: #a38348;
     font-weight: 700;
 }
 
 .activePage:hover {
-    background: #c9a14a;
-    color: #000;
+    background: #a38348;
+    color: #fff;
 }
 
 
