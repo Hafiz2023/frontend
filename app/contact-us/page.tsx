@@ -51,7 +51,7 @@ export default function ContactPage() {
                         <strong>Phone:</strong> +92 320 1616688
                     </div>
                     <div className={styles.detail}>
-                        <strong>Emails:</strong> admin@zatraders.pk
+                        <strong>Email:</strong> admin@zatraders.pk
                     </div>
                     <div className={styles.detail}>
                         <strong>Address:</strong>  Township, Lahore, Pakistan
