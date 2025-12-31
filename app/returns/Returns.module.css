@@ -1,0 +1,256 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    color: #f3f4f6;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 80vh;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 4rem;
+    background: linear-gradient(135deg, #fff 0%, #9ca3af 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    align-items: start;
+}
+
+.policySection h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #c9a14a;
+    margin-bottom: 1.25rem;
+    margin-top: 3rem;
+    letter-spacing: -0.01em;
+}
+
+.policySection h3:first-child {
+    margin-top: 0;
+}
+
+.policySection p,
+.policySection li {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #d1d5db;
+    margin-bottom: 1.25rem;
+}
+
+.policySection ul {
+    list-style-type: none;
+    /* Removing default bullets for custom one */
+    padding-left: 0;
+}
+
+.policySection li {
+    position: relative;
+    padding-left: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.policySection li:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.policySection li::before {
+    content: "•";
+    color: #c9a14a;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.policySection li:hover::before {
+    color: #fff;
+}
+
+.highlightBox {
+    background: rgba(201, 161, 74, 0.08);
+    border-left: 4px solid #c9a14a;
+    padding: 2rem;
+    margin-top: 3rem;
+    border-radius: 0 12px 12px 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    transition: background 0.3s ease;
+}
+
+.highlightBox:hover {
+    background: rgba(201, 161, 74, 0.15);
+}
+
+/* Form Styling */
+.formSection {
+    background: #09090b;
+    /* Darker black as requested */
+    padding: 3rem;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 2rem;
+}
+
+.formTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #fff;
+    letter-spacing: -0.02em;
+}
+
+.formGroup {
+    margin-bottom: 1.75rem;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    font-weight: 600;
+    /* Bolder label */
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: #18181b;
+    /* Darker input background */
+    border: 1px solid #3f3f46;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+    color: #52525b;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+    outline: none;
+    border-color: #c9a14a;
+    background: #000;
+    /* Pitch black on focus */
+    box-shadow: 0 0 0 4px rgba(201, 161, 74, 0.15);
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 1.25rem;
+    background: linear-gradient(135deg, #c9a14a 0%, #b8923e 100%);
+    color: #000;
+    font-weight: 700;
+    font-size: 1.05rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(201, 161, 74, 0.3);
+    margin-top: 1rem;
+}
+
+.submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(201, 161, 74, 0.4);
+}
+
+.submitBtn:active {
+    transform: translateY(0);
+}
+
+.submitBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.success {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid #059669;
+    color: #34d399;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.error {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid #dc2626;
+    color: #f87171;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+    .contentGrid {
+        gap: 4rem;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 4rem 1.5rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .contentGrid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .formSection {
+        padding: 2rem;
+        position: static;
+        /* Remove sticky on mobile */
+    }
+
+    .policySection {
+        order: 2;
+        /* Move text below form on mobile if preferred, or keep as is. Let's keep distinct sections */
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .formSection {
+        padding: 1.5rem;
+    }
+}

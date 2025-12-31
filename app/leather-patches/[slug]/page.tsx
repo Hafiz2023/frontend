@@ -5,9 +5,40 @@ import { notFound } from 'next/navigation';
 import { getProductBySlug, getAllCategories } from '@/lib/products';
 import styles from './page.module.css';
 
+async function fetchApiProduct(slug: string) {
+    try {
+        // Fetch all products for the category and filter (temporary solution until slug endpoint exists)
+        // We fetch generic 'products' endpoint. We might need to iterate categories or guess.
+        // For now, let's assume it's in Leather Patches since we are in that folder, 
+        // but strictly we should search all or pass category.
+        const res = await fetch(`http://127.0.0.1:5000/api/public/products?category=Leather Patches`, { cache: 'no-store' });
+        if (!res.ok) return null;
+        const data = await res.json();
+        const found = data.find((p: any) => p.slug === slug || p.sku.toLowerCase() === slug.toLowerCase());
+
+        if (found) {
+            return {
+                id: found.id,
+                title: found.title,
+                category: found.category,
+                image: found.image,
+                slug: found.slug,
+                description: found.description || `Premium quality ${found.title}. Contact us for more details.`
+            };
+        }
+        return null;
+    } catch (e) {
+        return null;
+    }
+}
+
 export default async function LeatherPatchDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const product = getProductBySlug(slug);
+    let product: any = getProductBySlug(slug);
+
+    if (!product) {
+        product = await fetchApiProduct(slug);
+    }
 
     if (!product) {
         notFound();

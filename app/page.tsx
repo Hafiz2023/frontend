@@ -1,4 +1,3 @@
-
 import Hero from "../components/Hero";
 import CategoriesGrid from "../components/CategoriesGrid";
 import WorkingExamples from "../components/WorkingExamples";

@@ -1,0 +1,99 @@
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1.5rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #c9a14a;
+    /* Gold Theme */
+}
+
+.tableContainer {
+    background: #18181b;
+    border-radius: 12px;
+    border: 1px solid #333;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #d1d5db;
+}
+
+.table th {
+    background: #27272a;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #c9a14a;
+    border-bottom: 1px solid #333;
+    white-space: nowrap;
+}
+
+.table td {
+    padding: 1rem;
+    border-bottom: 1px solid #333;
+    vertical-align: top;
+}
+
+.table tr:hover {
+    background: #27272a;
+}
+
+.messageContent {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    color: #c9a14a;
+    font-size: 1.5rem;
+}
+
+.actionBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.editBtn {
+    color: #60a5fa;
+}
+
+.editBtn:hover {
+    background: rgba(96, 165, 250, 0.1);
+}
+
+.deleteBtn {
+    color: #f87171;
+}
+
+.deleteBtn:hover {
+    background: rgba(248, 113, 113, 0.1);
+}

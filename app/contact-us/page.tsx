@@ -7,6 +7,8 @@ export default function ContactPage() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        phone: '',
+        address: '',
         subject: '',
         message: ''
     });
@@ -17,7 +19,7 @@ export default function ContactPage() {
         setStatus('submitting');
 
         try {
-            const res = await fetch('/api/public/contact', {
+            const res = await fetch('http://127.0.0.1:5000/api/public/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
@@ -25,7 +27,7 @@ export default function ContactPage() {
 
             if (res.ok) {
                 setStatus('success');
-                setFormData({ name: '', email: '', subject: '', message: '' });
+                setFormData({ name: '', email: '', phone: '', address: '', subject: '', message: '' });
             } else {
             }
         } catch {
@@ -46,13 +48,13 @@ export default function ContactPage() {
                     <p>We&apos;d love to hear from you. Please fill out the form or use the contact details below.</p>
 
                     <div className={styles.detail}>
-                        <strong>Phone:</strong> +92 312 2189966
+                        <strong>Phone:</strong> +92 320 1616688
                     </div>
                     <div className={styles.detail}>
                         <strong>Email:</strong> admin@zatraders.pk
                     </div>
                     <div className={styles.detail}>
-                        <strong>Address:</strong> Ichra Bazaar, Lahore, Pakistan
+                        <strong>Address:</strong>  Township, Lahore, Pakistan
                     </div>
                 </div>
 
@@ -81,6 +83,28 @@ export default function ContactPage() {
                             value={formData.email}
                             onChange={handleChange}
                             required
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="phone">Phone Number</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="address">Address</label>
+                        <input
+                            type="text"
+                            id="address"
+                            name="address"
+                            value={formData.address}
+                            onChange={handleChange}
                         />
                     </div>
 

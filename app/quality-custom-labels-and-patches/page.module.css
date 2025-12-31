@@ -1,113 +1,298 @@
-.hero {
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://zatraders.pk/wp-content/uploads/2022/06/labels-1024x422.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 6rem 2rem;
-    text-align: center;
-    color: white;
-    margin-bottom: 3rem;
-}
-
-.heroTitle {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-.heroBreadcrumb {
-    font-size: 1rem;
-    color: #ddd;
-}
-
-.heroBreadcrumb a {
-    color: #ddd;
-    text-decoration: none;
-}
-
-.heroBreadcrumb a:hover {
-    color: #fff;
+/* Page Wrapper */
+.pageWrapper {
+    background: #111;
+    background: linear-gradient(to bottom, #111 0%, #0a0a0a 100%);
+    min-height: 100vh;
+    color: #e0e0e0;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem 4rem;
+    padding: 0 2rem 6rem;
     display: grid;
     grid-template-columns: 3fr 1fr;
-    gap: 3rem;
+    gap: 4rem;
 }
 
+/* Main Content */
 .blogPost {
-    background: #fff;
+    animation: fadeIn 1s ease-out;
 }
 
 .meta {
     font-size: 0.9rem;
-    color: #777;
+    color: #888;
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #333;
 }
 
-/* ... existing styles ... */
+.meta a {
+    color: #c9a14a;
+    text-decoration: none;
+}
 
-.searchForm {
+.featuredImageWrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.featuredImage {
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.featuredImageWrapper:hover .featuredImage {
+    transform: scale(1.05);
+}
+
+.content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 2rem;
+    text-align: justify;
+}
+
+/* Tags */
+.tags {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.8rem;
+    margin: 2rem 0;
+}
+
+.tagLink {
+    background: #222;
+    color: #888;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    border: 1px solid #333;
+}
+
+.tagLink:hover {
+    background: #c9a14a;
+    color: #000;
+}
+
+/* Navigation */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    margin-bottom: 3rem;
+}
+
+.navLink {
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.navLink:hover {
+    transform: translateX(5px);
+}
+
+.navLabel {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.3rem;
+}
+
+.navTitle {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.navTitle:hover {
+    color: #c9a14a;
+}
+
+/* Comments Section */
+.commentsSection {
+    background: #1a1a1a;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.commentsTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.commentsNote {
+    color: #888;
+    font-size: 0.9rem;
     margin-bottom: 2rem;
 }
 
-.searchInput {
-    flex: 1;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
+.commentForm {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formGroup label {
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.formInput,
+.formTextarea {
+    width: 100%;
+    padding: 1rem;
+    background: #111;
+    border: 1px solid #333;
     border-radius: 4px;
-    background: #f9f9f9;
+    color: #fff;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+    border-color: #c9a14a;
+}
+
+.submitButton {
+    justify-self: start;
+    padding: 1rem 2.5rem;
+    background: #c9a14a;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.submitButton:hover {
+    background: #e0b454;
+    transform: translateY(-2px);
+}
+
+/* Sidebar */
+.sidebar {
+    padding-left: 1rem;
+}
+
+.widget {
+    background: #1a1a1a;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+    margin-bottom: 2rem;
+}
+
+.widgetTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #c9a14a;
+    padding-bottom: 0.8rem;
+    display: inline-block;
+}
+
+.widgetList {
+    list-style: none;
+    padding: 0;
+}
+
+.widgetList li {
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed #333;
+}
+
+.widgetList a {
+    color: #999;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.widgetList a:before {
+    content: "›";
+    margin-right: 10px;
+    color: #c9a14a;
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.widgetList a:hover {
+    color: #c9a14a;
+    padding-left: 5px;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.8rem;
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
 }
 
 .searchButton {
-    padding: 0.8rem 1.2rem;
-    background: #a38348;
-    color: white;
+    width: 100%;
+    padding: 0.8rem;
+    background: #333;
+    color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-weight: 600;
+    transition: background 0.3s;
 }
 
-.checkboxGroup {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    color: #666;
+.searchButton:hover {
+    background: #c9a14a;
+    color: #000;
 }
 
-.captchaBox {
-    border: 1px solid #ddd;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    display: inline-flex;
-    align-items: center;
-    gap: 1rem;
-    background: #f9f9f9;
-    margin-bottom: 1.5rem;
-    width: fit-content;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Sidebar Styles Update */
-.widgetTitle {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #333;
-}
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
 
-.widgetList li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
-    font-size: 0.95rem;
+    .sidebar {
+        padding-left: 0;
+        margin-top: 2rem;
+    }
 }

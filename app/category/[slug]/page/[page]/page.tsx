@@ -1,9 +1,8 @@
-
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
-import { getProducts, getAllCategories } from '@/lib/products';
+import { getProducts as getMockProducts, getAllCategories } from '@/lib/products';
 import PageHeader from '@/components/PageHeader';
 import styles from './Category.module.css';
 
@@ -20,6 +19,20 @@ export async function generateStaticParams() {
     return params;
 }
 
+async function fetchApiProducts(categorySlug: string) {
+    try {
+        // Convert slug to likely category name (e.g. "woven-labels" -> "Woven Labels" or just "woven")
+        // The API does a partial match ilike %query%
+        const searchCanvas = categorySlug.replace(/-/g, ' ');
+        const res = await fetch(`http://127.0.0.1:5000/api/public/products?category=${searchCanvas}`, { cache: 'no-store' });
+        if (!res.ok) return [];
+        return await res.json();
+    } catch (e) {
+        console.error("API Fetch Error:", e);
+        return [];
+    }
+}
+
 export default async function CategoryPaginationPage({ params }: { params: Promise<{ slug: string, page: string }> }) {
     const { slug, page } = await params;
     const pageNum = parseInt(page);
@@ -28,7 +41,36 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
         notFound();
     }
 
-    const { data: products, totalPages } = getProducts(slug, pageNum, 9); // items per page
+    // 1. Fetch from API first
+    const apiProducts = await fetchApiProducts(slug);
+
+    let products = [];
+    let totalPages = 1;
+    let totalItems = 0;
+    const itemsPerPage = 9;
+
+    if (apiProducts.length > 0) {
+        // Pagination logic for API data
+        totalItems = apiProducts.length;
+        totalPages = Math.ceil(totalItems / itemsPerPage);
+
+        const start = (pageNum - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        // Map API data to component Props
+        products = apiProducts.slice(start, end).map((p: any) => ({
+            id: p.id,
+            title: p.title,
+            category: p.category,
+            image: p.image, // API returns full URL or path
+            slug: p.slug
+        }));
+    } else {
+        // 2. Fallback to Mock Data
+        const { data, totalPages: mockTotal } = getMockProducts(slug, pageNum, itemsPerPage);
+        products = data;
+        totalPages = mockTotal;
+    }
 
     if (products.length === 0 && pageNum > 1) {
         // Handle empty page better in real app
@@ -54,12 +96,12 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
                 <main>
                     {products.length > 0 ? (
                         <div className={styles.grid}>
-                            {products.map((product) => (
+                            {products.map((product: any) => (
                                 <ProductCard
                                     key={product.id}
                                     title={product.title}
                                     category={product.category}
-                                    imageSrc={product.image}
+                                    imageSrc={product.image || product.imageSrc} // Handle both props if mock uses imageSrc (it actually uses image)
                                     slug={product.slug}
                                 />
                             ))}

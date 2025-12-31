@@ -2,19 +2,27 @@ import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
-import { getProducts, getAllCategories } from '@/lib/products';
+import { getAllCategories } from '@/lib/products';
 import PageHeader from '@/components/PageHeader';
-import styles from '../../page.module.css'; // Reuse styles from parent
+import styles from '../../page.module.css';
+import { getProducts as getMockProducts } from '@/lib/products';
+
+// Helper to fetch products from API
+async function fetchApiProducts(categorySlug: string) {
+    try {
+        const searchCanvas = categorySlug.replace(/-/g, ' ');
+        const res = await fetch(`http://127.0.0.1:5000/api/public/products?category=${searchCanvas}`, { cache: 'no-store' });
+        if (!res.ok) return [];
+        const data = await res.json();
+        return data.length > 0 ? data : null;
+    } catch (e) {
+        return null;
+    }
+}
 
 export async function generateStaticParams() {
-    // Generate params for first few pages of leather-patches
-    // In a real app with many products, you might not static generate all of them
-    const categorySlug = 'leather-patches';
-    const { totalPages } = getProducts(categorySlug, 1, 9);
-
-    return Array.from({ length: totalPages }, (_, i) => ({
-        page: (i + 1).toString(),
-    }));
+    // Generate just a few pages statically
+    return [{ page: '1' }, { page: '2' }, { page: '3' }];
 }
 
 export default async function LeatherPatchesPaginationPage({ params }: { params: Promise<{ page: string }> }) {
@@ -26,45 +34,62 @@ export default async function LeatherPatchesPaginationPage({ params }: { params:
         notFound();
     }
 
-    const { data: products, totalPages } = getProducts(categorySlug, pageNum, 9);
+    // 1. Try Fetching from API
+    let products = [];
+    let totalPages = 1;
+    let itemsPerPage = 9;
+
+    const apiData = await fetchApiProducts(categorySlug);
+
+    if (apiData) {
+        // Handle API Pagination manually since API returns all
+        const totalItems = apiData.length;
+        totalPages = Math.ceil(totalItems / itemsPerPage);
+
+        const start = (pageNum - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        products = apiData.slice(start, end).map((p: any) => ({
+            id: p.id,
+            title: p.title,
+            category: p.category,
+            image: p.image,
+            slug: p.slug
+        }));
+    } else {
+        // 2. Fallback
+        const { data, totalPages: mockTotal } = getMockProducts(categorySlug, pageNum, itemsPerPage);
+        products = data;
+        totalPages = mockTotal;
+    }
 
     if (products.length === 0 && pageNum > 1) {
-        // If user manually types a high page number
-        return (
-            <div className={styles.container}>
-                <div className={styles.noProducts}>
-                    <p>No more leather patches found.</p>
-                    <Link href="/leather-patches" className={styles.primaryButton}>Back to first page</Link>
-                </div>
-            </div>
-        );
+        // Return empty state or redirect logic
     }
 
     const allCategories = getAllCategories();
 
     return (
-        <div>
-            {/* Hero Section */}
-            {/* Hero Section */}
+        <div className={styles.pageWrapper}>
             <PageHeader
                 title="Leather Patches"
                 breadcrumbs={[
                     { label: "Leather Patches", href: "/leather-patches" },
                     { label: `Page ${pageNum}` }
                 ]}
-                backgroundImage="/hero-bg.png"
+                backgroundImage="https://zatraders.pk/wp-content/uploads/2023/04/leather-patches-banner.jpg"
             />
 
             <div className={styles.container}>
                 <main>
                     {products.length > 0 ? (
                         <div className={styles.grid}>
-                            {products.map((product) => (
+                            {products.map((product: any) => (
                                 <ProductCard
                                     key={product.id}
                                     title={product.title}
                                     category={product.category}
-                                    imageSrc={product.image}
+                                    imageSrc={product.image || product.imageSrc}
                                     slug={product.slug}
                                     baseUrl="/leather-patches"
                                 />
@@ -72,7 +97,7 @@ export default async function LeatherPatchesPaginationPage({ params }: { params:
                         </div>
                     ) : (
                         <div className={styles.noProducts}>
-                            <p>No leather patches found.</p>
+                            <p>No leather patches found on this page.</p>
                         </div>
                     )}
 
@@ -82,19 +107,15 @@ export default async function LeatherPatchesPaginationPage({ params }: { params:
                             <Link href={pageNum === 2 ? "/leather-patches" : `/leather-patches/page/${pageNum - 1}`} className={styles.pageLink}>&laquo; Prev</Link>
                         )}
 
-                        {pageNum > 1 && (
-                            <Link href="/leather-patches" className={styles.pageLink}>1</Link>
-                        )}
-
-                        {/* Current Page Indicator (if not 1) */}
-                        {pageNum > 1 && (
-                            <span className={`${styles.pageLink} ${styles.activePage}`}>{pageNum}</span>
-                        )}
-
-                        {/* Next pages */}
-                        {pageNum < totalPages && (
-                            <Link href={`/leather-patches/page/${pageNum + 1}`} className={styles.pageLink}>{pageNum + 1}</Link>
-                        )}
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                            <Link
+                                key={p}
+                                href={p === 1 ? "/leather-patches" : `/leather-patches/page/${p}`}
+                                className={`${styles.pageLink} ${p === pageNum ? styles.activePage : ''}`}
+                            >
+                                {p}
+                            </Link>
+                        ))}
 
                         {pageNum < totalPages && (
                             <Link href={`/leather-patches/page/${pageNum + 1}`} className={styles.pageLink}>Next &raquo;</Link>
@@ -103,27 +124,14 @@ export default async function LeatherPatchesPaginationPage({ params }: { params:
                 </main>
 
                 <aside className={styles.sidebar}>
-                    {/* Search Widget */}
                     <div className={styles.widget}>
+                        <h3 className={styles.widgetTitle}>Search</h3>
                         <form className={styles.searchForm}>
                             <input type="text" placeholder="Search..." className={styles.searchInput} />
                             <button type="submit" className={styles.searchButton}>Search</button>
                         </form>
                     </div>
 
-                    {/* Recent Posts Widget */}
-                    <div className={styles.widget}>
-                        <h3 className={styles.widgetTitle}>Recent Posts</h3>
-                        <ul className={styles.categoryList}>
-                            <li><Link href="#">Print Woven Lace</Link></li>
-                            <li><Link href="#">PrintCanvas Lace</Link></li>
-                            <li><Link href="#">Print Ribbon Satin Lace</Link></li>
-                            <li><Link href="#">Print Lace</Link></li>
-                            <li><Link href="#">Ribbon Satan Labels</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Categories Widget */}
                     <div className={styles.widget}>
                         <h3 className={styles.widgetTitle}>Categories</h3>
                         <ul className={styles.categoryList}>
@@ -137,6 +145,15 @@ export default async function LeatherPatchesPaginationPage({ params }: { params:
                                     </Link>
                                 </li>
                             ))}
+                        </ul>
+                    </div>
+
+                    <div className={styles.widget}>
+                        <h3 className={styles.widgetTitle}>Recent Posts</h3>
+                        <ul className={styles.categoryList}>
+                            <li><Link href="#">New Arrival: Woven Badge</Link></li>
+                            <li><Link href="#">Premium Hang Tags</Link></li>
+                            <li><Link href="#">Embossed Leather</Link></li>
                         </ul>
                     </div>
                 </aside>

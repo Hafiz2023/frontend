@@ -1,23 +1,67 @@
 import React from 'react';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
-import { getProducts, getAllCategories } from '@/lib/products';
+import { getAllCategories } from '@/lib/products';
 import PageHeader from '@/components/PageHeader';
 import styles from './page.module.css';
+import { getProducts as getMockProducts } from '@/lib/products';
+import CursorEffect from '@/components/CursorEffect';
 
-export default function LeatherPatchesPage() {
+async function fetchApiProducts(categorySlug: string) {
+    try {
+        const searchCanvas = categorySlug.replace(/-/g, ' ');
+        const res = await fetch(`http://127.0.0.1:5000/api/public/products?category=${searchCanvas}`, { cache: 'no-store' });
+        if (!res.ok) return [];
+        const data = await res.json();
+        return data.length > 0 ? data : null;
+    } catch {
+        return null;
+    }
+}
+
+interface Product {
+    id: number;
+    title: string;
+    category: string;
+    image?: string;
+    imageSrc?: string;
+    slug: string;
+}
+
+export default async function LeatherPatchesPage() {
     const categorySlug = 'leather-patches';
-    const pageNum = 1; // Default to page 1 for the main route
+    const pageNum = 1;
 
-    const { data: products, totalPages } = getProducts(categorySlug, pageNum, 9); // 9 items per page
+    // 1. Try Fetching from API
+    let products: Product[] = [];
+
+    const apiData = await fetchApiProducts(categorySlug);
+
+    if (apiData) {
+        products = apiData.map((p: any) => ({
+            id: p.id,
+            title: p.title,
+            category: p.category,
+            image: p.image,
+            slug: p.slug
+        }));
+    } else {
+        // 2. Fallback
+        const { data } = getMockProducts(categorySlug, pageNum, 9);
+        products = data.map((d: any) => ({
+            id: d.id,
+            title: d.title,
+            category: d.category,
+            imageSrc: d.imageSrc,
+            slug: d.slug
+        }));
+    }
 
     const allCategories = getAllCategories();
 
     return (
-        <div>
-            {/* Hero Section */}
-            {/* Hero Section */}
+        <div className={styles.pageWrapper}>
+            <CursorEffect />
             <PageHeader
                 title="Leather Patches"
                 breadcrumbs={[{ label: "Leather Patches" }]}
@@ -33,7 +77,7 @@ export default function LeatherPatchesPage() {
                                     key={product.id}
                                     title={product.title}
                                     category={product.category}
-                                    imageSrc={product.image}
+                                    imageSrc={product.image || product.imageSrc || ''}
                                     slug={product.slug}
                                     baseUrl="/leather-patches"
                                 />
@@ -45,43 +89,23 @@ export default function LeatherPatchesPage() {
                         </div>
                     )}
 
-                    {/* Pagination - Static for page 1 main route, link to page 2 if needed */}
                     <div className={styles.pagination}>
                         <span className={`${styles.pageLink} ${styles.activePage}`}>1</span>
-                        {totalPages > 1 && (
-                            <Link href="/leather-patches/page/2" className={styles.pageLink}>2</Link>
-                        )}
-                        {totalPages > 2 && (
-                            <Link href="/leather-patches/page/3" className={styles.pageLink}>3</Link>
-                        )}
-                        {totalPages > 1 && (
-                            <Link href="/leather-patches/page/2" className={styles.pageLink}>Next &raquo;</Link>
-                        )}
+                        <Link href="/category/leather-patches/page/2" className={styles.pageLink}>2</Link>
+                        <Link href="/category/leather-patches/page/3" className={styles.pageLink}>3</Link>
+                        <Link href="/category/leather-patches/page/2" className={styles.pageLink}>Next &raquo;</Link>
                     </div>
                 </main>
 
                 <aside className={styles.sidebar}>
-                    {/* Search Widget */}
                     <div className={styles.widget}>
+                        <h3 className={styles.widgetTitle}>Search</h3>
                         <form className={styles.searchForm}>
                             <input type="text" placeholder="Search..." className={styles.searchInput} />
                             <button type="submit" className={styles.searchButton}>Search</button>
                         </form>
                     </div>
 
-                    {/* Recent Posts Widget */}
-                    <div className={styles.widget}>
-                        <h3 className={styles.widgetTitle}>Recent Posts</h3>
-                        <ul className={styles.categoryList}>
-                            <li><Link href="#">Print Woven Lace</Link></li>
-                            <li><Link href="#">Print Canvas Lace</Link></li>
-                            <li><Link href="#">Print Ribbon Satin Lace</Link></li>
-                            <li><Link href="#">Print Lace</Link></li>
-                            <li><Link href="#">Ribbon Satan Labels</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Categories Widget */}
                     <div className={styles.widget}>
                         <h3 className={styles.widgetTitle}>Categories</h3>
                         <ul className={styles.categoryList}>

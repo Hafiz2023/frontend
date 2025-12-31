@@ -42,11 +42,39 @@ const categoriesData: Record<string, string[]> = {
 const productImages = [
     "/tag-black-gold.png",
     "/tag-kraft-minimal.png",
-    "/tag-fabric-white.png"
+    "/tag-fabric-white.png",
+    "/printed-tags-banner.png"
 ];
 
 
 const customProductData: Record<string, { image: string, description: string }> = {
+    // Leather Patches - Specific Images
+    'laser-engraving-leather-jacket-patches': {
+        image: '/LeartherTags/Jeans-Universal-jeans-leather-patch-labels.jpg',
+        description: 'Premium black leather branding patch with silver foil stamping, perfect for high-end jackets.'
+    },
+    'laser-engraving-cap-leather-patches': {
+        image: '/LeartherTags/dark-grey-leather-patch-new.jpg',
+        description: 'Circular dark brown leather patch with modern embossing, tailored for caps and headwear.'
+    },
+    'blank-leather-patch': {
+        image: '/LeartherTags/blank-leather-label-500x500-1.jpg',
+        description: 'Authentic cognac leather patch with stitch detailing, ready for your custom logo.'
+    },
+    'laser-engraving-leather-patches': {
+        image: '/LeartherTags/Synthetic-Leather-patch-with-custom-engraving.jpg',
+        description: 'Precision laser-engraved leather patches available in various shapes and finishes.'
+    },
+    'cap-leather-patches': {
+        image: '/LeartherTags/levis-leather-patch.jpg',
+        description: 'Durable and stylish leather patches designed specifically for hats and beanies.'
+    },
+    'leather-patches-in-karachi': {
+        image: '/LeartherTags/leather-patch-for-jeans-pants-3-500x500-1.jpeg',
+        description: 'Leading manufacturer of custom leather patches in Karachi, offering bulk production.'
+    },
+
+    // Existing Custom Data
     'print-woven-lace': {
         image: 'https://zatraders.pk/wp-content/uploads/2024/06/Print-Canvas-Lace-500x500-1.jpg',
         description: 'We also make print woven lace in Pakistan. We are known for our product quality and reasonable prices. Contact us for booking your order and any inquiry.'
@@ -78,9 +106,26 @@ const allProducts = Object.entries(categoriesData).flatMap(([categorySlug, title
             const baseSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
             const slug = v === 0 ? baseSlug : `${baseSlug}-${v + 1}`;
 
-            // Check for custom data
-            const customData = customProductData[slug];
-            const image = customData?.image || productImages[Math.floor(Math.random() * productImages.length)];
+            // Check for custom data - try specific slug first, then base slug
+            const customData = customProductData[slug] || customProductData[baseSlug];
+
+            let image = customData?.image;
+
+            // Fallback logic if no custom image is found
+            if (!image) {
+                if (categorySlug === 'leather-patches') {
+                    // Use one of the leather patch images as default fallback
+                    image = '/LeartherTags/leather-patches-collection.jpg';
+                } else if (categorySlug === 'woven-labels' || categorySlug === 'printed-tags') {
+                    // Use tag images
+                    image = productImages[Math.floor(Math.random() * productImages.length)];
+                } else if (categorySlug === 'paper-bags') {
+                    image = 'https://zatraders.pk/wp-content/uploads/2022/07/cheap-paper-bag-with-logo-500x500-1.jpg'; // Fallback
+                } else {
+                    image = productImages[Math.floor(Math.random() * productImages.length)];
+                }
+            }
+
             const description = customData?.description || `Premium quality ${title} available for bulk orders. Contact us for custom designs and pricing. We offer high-quality printing and various finishing options.`;
 
             return {
