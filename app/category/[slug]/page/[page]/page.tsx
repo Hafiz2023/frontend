@@ -24,7 +24,7 @@ async function fetchApiProducts(categorySlug: string) {
         // Convert slug to likely category name (e.g. "woven-labels" -> "Woven Labels" or just "woven")
         // The API does a partial match ilike %query%
         const searchCanvas = categorySlug.replace(/-/g, ' ');
-        const res = await fetch(`http://127.0.0.1:5000/api/public/products?category=${searchCanvas}`, { cache: 'no-store' });
+        const res = await fetch(`/api/public/products?category=${searchCanvas}`, { cache: 'no-store' });
         if (!res.ok) return [];
         return await res.json();
     } catch {

@@ -187,3 +187,39 @@
         padding: 3rem 2rem;
     }
 }
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .info,
+    .form {
+        padding: 2rem 1.5rem;
+    }
+
+    .info h3 {
+        font-size: 1.5rem;
+    }
+
+    .info p {
+        font-size: 0.95rem;
+    }
+
+    .detail {
+        font-size: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .submitBtn {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}

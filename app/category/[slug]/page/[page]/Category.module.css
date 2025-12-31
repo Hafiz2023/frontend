@@ -105,3 +105,13 @@
         padding-top: 2rem;
     }
 }
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

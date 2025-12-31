@@ -42,7 +42,7 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
@@ -136,5 +136,19 @@
 
     .imageContainer {
         height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sectionWrapper {
+        padding: 40px 15px;
+    }
+
+    .cardTitle {
+        font-size: 1.2rem;
+    }
+
+    .imageContainer {
+        height: 200px;
     }
 }

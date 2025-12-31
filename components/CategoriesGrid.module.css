@@ -1,5 +1,5 @@
 .gridWrapper {
-    padding: 80px 20px;
+    padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
     background-color: #f9f9f9;
@@ -17,7 +17,7 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
@@ -92,5 +92,20 @@
 @media (max-width: 768px) {
     .sectionTitle {
         font-size: 2rem;
+    }
+
+    .gridWrapper {
+        padding: 40px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        margin: 0 auto;
+        width: 100%;
     }
 }
