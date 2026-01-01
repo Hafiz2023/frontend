@@ -57,7 +57,6 @@
     margin: 2rem 0;
     border-radius: 12px;
     overflow-x: auto;
-    /* Enable horizontal scroll on mobile */
     border: 1px solid #e5e7eb;
 }
 
@@ -65,8 +64,8 @@
     width: 100%;
     border-collapse: collapse;
     background: #fff;
+    /* Default min-width for larger screens */
     min-width: 500px;
-    /* Ensure table doesn't squish too much */
 }
 
 .table th {
@@ -208,199 +207,27 @@
     }
 
     .mainContent {
-        padding: 1.5rem;
-        border-radius: 16px;
+        padding: 1rem;
     }
 
     .sectionTitle {
         font-size: 1.25rem;
     }
 
+    /* Force table to fit */
+    .table {
+        min-width: auto;
+    }
+
     .table th,
     .table td {
-        padding: 0.75rem 1rem;
-        font-size: 0.9rem;
+        padding: 0.5rem 0.2rem;
+        font-size: 0.8rem;
+        white-space: normal;
     }
 
     .trackingCard {
         padding: 1.5rem;
         border-radius: 16px;
-    }
-}
-
-.title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 4rem;
-    background: linear-gradient(135deg, #fff 0%, #9ca3af 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
-    letter-spacing: -0.02em;
-}
-
-.contentWrapper {
-    display: grid;
-    grid-template-columns: 1fr 350px;
-    gap: 4rem;
-    align-items: start;
-}
-
-.mainContent {
-    background: #18181b;
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 3rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.sectionTitle {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #c9a14a;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.text {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: #d1d5db;
-    margin-bottom: 2rem;
-}
-
-/* Table Styling */
-.tableContainer {
-    margin: 2rem 0;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #333;
-}
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #27272a;
-}
-
-.table th {
-    background: #3f3f46;
-    color: #fff;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    padding: 1rem 1.5rem;
-    text-align: left;
-    letter-spacing: 0.05em;
-}
-
-.table td {
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid #333;
-    color: #d1d5db;
-}
-
-.table tr:last-child td {
-    border-bottom: none;
-}
-
-.infoBox {
-    background: rgba(201, 161, 74, 0.08);
-    border-left: 4px solid #c9a14a;
-    padding: 1.5rem;
-    border-radius: 0 8px 8px 0;
-    margin: 2rem 0;
-}
-
-.infoBox h4 {
-    color: #c9a14a;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-/* Sidebar / Tracking Widget */
-.sidebar {
-    position: sticky;
-    top: 2rem;
-}
-
-.trackingCard {
-    background: #18181b;
-    border-radius: 24px;
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
-}
-
-.trackingTitle {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 1.5rem;
-}
-
-.inputGroup {
-    margin-bottom: 1.5rem;
-}
-
-.input {
-    width: 100%;
-    padding: 1rem;
-    background: #27272a;
-    border: 1px solid #3f3f46;
-    border-radius: 12px;
-    color: #fff;
-    font-size: 1rem;
-    transition: all 0.2s;
-}
-
-.input:focus {
-    outline: none;
-    border-color: #c9a14a;
-    box-shadow: 0 0 0 4px rgba(201, 161, 74, 0.15);
-}
-
-.trackBtn {
-    width: 100%;
-    padding: 1rem;
-    background: linear-gradient(135deg, #c9a14a 0%, #b8923e 100%);
-    color: #000;
-    font-weight: 700;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.trackBtn:hover {
-    transform: translateY(-2px);
-}
-
-@media (max-width: 1024px) {
-    .contentWrapper {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-
-    .sidebar {
-        position: static;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 4rem 1.5rem;
-    }
-
-    .title {
-        font-size: 2.5rem;
-        margin-bottom: 3rem;
-    }
-
-    .mainContent {
-        padding: 1.5rem;
     }
 }
