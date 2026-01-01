@@ -35,6 +35,7 @@ export default function QualityLabelsPage() {
                             fill
                             className={styles.featuredImage}
                             priority
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 800px"
                         />
                     </div>
 
@@ -52,7 +53,7 @@ export default function QualityLabelsPage() {
 
                     <nav className={styles.navigation}>
                         <div></div> {/* Spacer */}
-                        <Link href="#" className={styles.navLink} style={{ textAlign: 'right' }}>
+                        <Link href="#" className={`${styles.navLink} ${styles.nextPost}`}>
                             <span className={styles.navLabel}>Next Post</span>
                             <span className={styles.navTitle}>Custom Branding &rarr;</span>
                         </Link>
@@ -69,7 +70,7 @@ export default function QualityLabelsPage() {
                                 <textarea id="comment" rows={6} className={styles.formTextarea}></textarea>
                             </div>
 
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+                            <div className={styles.formGrid}>
                                 <div className={styles.formGroup}>
                                     <label htmlFor="name">Name *</label>
                                     <input type="text" id="name" className={styles.formInput} />
@@ -94,7 +95,7 @@ export default function QualityLabelsPage() {
                         <h3 className="text-white font-bold mb-4">Search</h3>
                         <form>
                             <input type="text" placeholder="Search..." className={styles.searchInput} />
-                            <button type="submit" className={styles.searchButton} style={{ marginTop: '0.5rem' }}>Search</button>
+                            <button type="submit" className={styles.searchButton}>Search</button>
                         </form>
                     </div>
 

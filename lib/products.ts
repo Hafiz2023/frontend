@@ -25,6 +25,12 @@ const categoriesData: Record<string, string[]> = {
         "Woven Labels Small Quantities",
         "Damask Woven Labels", "Satin Woven Labels" // Keep some generic ones
     ],
+    'hang-tags': [
+        "Luxury Hang Tags", "Folded Hang Tags", "Die Cut Hang Tags",
+        "Kraft Paper Hang Tags", "Embossed Hang Tags", "Gold Foil Hang Tags",
+        "Clothing Swing Tags", "Custom Shape Tags", "PVC Hang Tags",
+        "Round Hang Tags", "Square Hang Tags", "Jeans Hang Tags"
+    ],
     'paper-bags': [
         "Kraft Paper Bags Manufacturers In Karachi", // Fixes the 404
         "Kraft Paper Bags", "Luxury Shopping Bags", "Retail Paper Bags", "Custom Printed Paper Bags",
@@ -116,7 +122,7 @@ const allProducts = Object.entries(categoriesData).flatMap(([categorySlug, title
                 if (categorySlug === 'leather-patches') {
                     // Use one of the leather patch images as default fallback
                     image = '/LeartherTags/leather-patches-collection.jpg';
-                } else if (categorySlug === 'woven-labels' || categorySlug === 'printed-tags') {
+                } else if (categorySlug === 'woven-labels' || categorySlug === 'printed-tags' || categorySlug === 'hang-tags') {
                     // Use tag images
                     image = productImages[Math.floor(Math.random() * productImages.length)];
                 } else if (categorySlug === 'paper-bags') {
