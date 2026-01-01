@@ -44,6 +44,12 @@ export default function AdminDashboard() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentMessage, setCurrentMessage] = useState<Partial<Message>>({});
     const [isEditing, setIsEditing] = useState(false);
+    const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+
+    const openViewModal = (msg: Message) => {
+        setCurrentMessage(msg);
+        setIsViewModalOpen(true);
+    };
 
     const fetchData = async () => {
         try {
@@ -248,7 +254,15 @@ export default function AdminDashboard() {
                                                         {msg.message.length > 50 ? msg.message.substring(0, 50) + '...' : msg.message}
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <button
+                                                        onClick={() => openViewModal(msg)}
+                                                        className={styles.viewBtn}
+                                                        style={{ marginRight: '0.5rem' }}
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                                        View
+                                                    </button>
                                                     <button onClick={() => openEditModal(msg)} style={{ marginRight: '0.5rem', background: 'none', border: 'none', color: '#3b82f6', cursor: 'pointer' }}>Edit</button>
                                                     <button onClick={() => handleDelete(msg.id)} style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer' }}>Delete</button>
                                                 </td>
@@ -310,63 +324,110 @@ export default function AdminDashboard() {
                 )}
             </div>
 
-            {/* Simple Modal */}
-            {isModalOpen && (
-                <div style={{
-                    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-                    backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000
-                }}>
-                    <div style={{
-                        background: 'var(--bg-card, #1e1e1e)', padding: '2rem', borderRadius: '8px', width: '500px', maxWidth: '90%', color: 'var(--text-primary, #fff)'
-                    }}>
-                        <h3>{isEditing ? 'Edit Message' : 'Add New Message'}</h3>
-                        <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
-                            <input
-                                placeholder="Name"
-                                value={currentMessage.name || ''}
-                                onChange={e => setCurrentMessage({ ...currentMessage, name: e.target.value })}
-                                style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #444', background: '#2d2d2d', color: '#fff' }}
-                                required
-                            />
-                            <input
-                                placeholder="Email"
-                                type="email"
-                                value={currentMessage.email || ''}
-                                onChange={e => setCurrentMessage({ ...currentMessage, email: e.target.value })}
-                                style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #444', background: '#2d2d2d', color: '#fff' }}
-                                required
-                            />
-                            <input
-                                placeholder="Phone"
-                                type="tel"
-                                value={currentMessage.phone || ''}
-                                onChange={e => setCurrentMessage({ ...currentMessage, phone: e.target.value })}
-                                style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #444', background: '#2d2d2d', color: '#fff' }}
-                            />
-                            <input
-                                placeholder="Address"
-                                value={currentMessage.address || ''}
-                                onChange={e => setCurrentMessage({ ...currentMessage, address: e.target.value })}
-                                style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #444', background: '#2d2d2d', color: '#fff' }}
-                            />
-                            <input
-                                placeholder="Subject"
-                                value={currentMessage.subject || ''}
-                                onChange={e => setCurrentMessage({ ...currentMessage, subject: e.target.value })}
-                                style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #444', background: '#2d2d2d', color: '#fff' }}
-                            />
-                            <textarea
-                                placeholder="Message"
-                                rows={4}
-                                value={currentMessage.message || ''}
-                                onChange={e => setCurrentMessage({ ...currentMessage, message: e.target.value })}
-                                style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #444', background: '#2d2d2d', color: '#fff' }}
-                                required
-                            ></textarea>
+            {/* View Modal */}
+            {isViewModalOpen && (
+                <div className={styles.modalOverlay} onClick={() => setIsViewModalOpen(false)}>
+                    <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+                        <div className={styles.modalHeader}>
+                            <h3 className={styles.modalTitle}>Contact Message</h3>
+                            <button className={styles.closeBtn} onClick={() => setIsViewModalOpen(false)}>&times;</button>
+                        </div>
 
-                            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '1rem' }}>
-                                <button type="button" onClick={() => setIsModalOpen(false)} style={{ padding: '0.5rem 1rem', background: '#666', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Cancel</button>
-                                <button type="submit" style={{ padding: '0.5rem 1rem', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Save</button>
+                        <div className={styles.modalBody}>
+                            <div className={styles.detailRow}>
+                                <span className={styles.label}>From:</span>
+                                <div className={styles.value}>
+                                    <strong>{currentMessage.name}</strong> &lt;{currentMessage.email}&gt;
+                                </div>
+                                <div style={{ fontSize: '0.9rem', color: '#6b7280', marginTop: '0.25rem' }}>
+                                    {currentMessage.phone} | {currentMessage.address || 'No Address'}
+                                </div>
+                                <div style={{ fontSize: '0.85rem', color: '#9ca3af', marginTop: '0.25rem' }}>
+                                    {currentMessage.date ? new Date(currentMessage.date).toLocaleString() : ''}
+                                </div>
+                            </div>
+
+                            <div className={styles.detailRow}>
+                                <span className={styles.label}>Subject:</span>
+                                <div className={styles.value}>{currentMessage.subject}</div>
+                            </div>
+
+                            <div className={styles.detailRow}>
+                                <span className={styles.label}>Message:</span>
+                                <div className={styles.messageBox}>
+                                    {currentMessage.message}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={styles.modalActions}>
+                            <button className={`${styles.btn} ${styles.btnSecondary}`} onClick={() => setIsViewModalOpen(false)}>Close</button>
+                            <a href={`mailto:${currentMessage.email}`} className={`${styles.btn} ${styles.btnPrimary}`} style={{ textDecoration: 'none' }}>
+                                Reply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Add/Edit Modal */}
+            {isModalOpen && (
+                <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
+                    <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+                        <div className={styles.modalHeader}>
+                            <h3 className={styles.modalTitle}>{isEditing ? 'Edit Message' : 'Add New Message'}</h3>
+                            <button className={styles.closeBtn} onClick={() => setIsModalOpen(false)}>&times;</button>
+                        </div>
+
+                        <form onSubmit={handleSave}>
+                            <div className={styles.modalBody} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                <input
+                                    placeholder="Name"
+                                    value={currentMessage.name || ''}
+                                    onChange={e => setCurrentMessage({ ...currentMessage, name: e.target.value })}
+                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem' }}
+                                    required
+                                />
+                                <input
+                                    placeholder="Email"
+                                    type="email"
+                                    value={currentMessage.email || ''}
+                                    onChange={e => setCurrentMessage({ ...currentMessage, email: e.target.value })}
+                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem' }}
+                                    required
+                                />
+                                <input
+                                    placeholder="Phone"
+                                    type="tel"
+                                    value={currentMessage.phone || ''}
+                                    onChange={e => setCurrentMessage({ ...currentMessage, phone: e.target.value })}
+                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem' }}
+                                />
+                                <input
+                                    placeholder="Address"
+                                    value={currentMessage.address || ''}
+                                    onChange={e => setCurrentMessage({ ...currentMessage, address: e.target.value })}
+                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem' }}
+                                />
+                                <input
+                                    placeholder="Subject"
+                                    value={currentMessage.subject || ''}
+                                    onChange={e => setCurrentMessage({ ...currentMessage, subject: e.target.value })}
+                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem' }}
+                                />
+                                <textarea
+                                    placeholder="Message"
+                                    rows={5}
+                                    value={currentMessage.message || ''}
+                                    onChange={e => setCurrentMessage({ ...currentMessage, message: e.target.value })}
+                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem', fontFamily: 'inherit' }}
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <div className={styles.modalActions}>
+                                <button type="button" className={`${styles.btn} ${styles.btnSecondary}`} onClick={() => setIsModalOpen(false)}>Cancel</button>
+                                <button type="submit" className={`${styles.btn} ${styles.btnPrimary}`}>Save</button>
                             </div>
                         </form>
                     </div>
