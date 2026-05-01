@@ -37,7 +37,7 @@ export default async function PaperBagsPage() {
     const apiData = await fetchApiProducts(categorySlug);
 
     if (apiData) {
-        products = apiData.map((p: any) => ({
+        products = apiData.map((p: Product) => ({
             id: p.id,
             title: p.title,
             category: p.category,
@@ -70,7 +70,7 @@ export default async function PaperBagsPage() {
                 <main>
                     {products.length > 0 ? (
                         <div className={styles.grid}>
-                            {products.map((product: any) => (
+                            {products.map((product: Product) => (
                                 <ProductCard
                                     key={product.id}
                                     title={product.title}

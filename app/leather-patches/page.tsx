@@ -38,7 +38,7 @@ export default async function LeatherPatchesPage() {
     const apiData = await fetchApiProducts(categorySlug);
 
     if (apiData) {
-        products = apiData.map((p: any) => ({
+        products = apiData.map((p: Product) => ({
             id: p.id,
             title: p.title,
             category: p.category,

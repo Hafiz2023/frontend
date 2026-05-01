@@ -66,7 +66,7 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
         const end = start + itemsPerPage;
 
         // Map API data to component Props
-        products = apiProducts.slice(start, end).map((p: any) => ({
+        products = apiProducts.slice(start, end).map((p: Product) => ({
             id: p.id,
             title: p.title,
             category: p.category,

@@ -28,8 +28,8 @@ export default function ContactAdminPage() {
                     const data = await res.json();
                     setMessages(data);
                 }
-            } catch (err) {
-                console.error("Failed to fetch messages", err);
+            } catch {
+                console.error("Failed to fetch messages");
             } finally {
                 setLoading(false);
             }
@@ -49,8 +49,8 @@ export default function ContactAdminPage() {
             } else {
                 alert('Failed to delete message');
             }
-        } catch (error) {
-            console.error(error);
+        } catch {
+            console.error("Error deleting message");
             alert('Error deleting message');
         }
     };
@@ -61,7 +61,7 @@ export default function ContactAdminPage() {
         <div className={styles.container}>
             <header className={styles.header}>
                 <div>
-                    <Link href="/admin/dashboard" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'block' }}>
+                    <Link href="/admin/dashboard" className={styles.backLink}>
                         &larr; Back to Dashboard
                     </Link>
                     <h1 className={styles.title}>Contact Inquiries</h1>
@@ -83,21 +83,21 @@ export default function ContactAdminPage() {
                     <tbody>
                         {messages.length === 0 ? (
                             <tr>
-                                <td colSpan={6} style={{ textAlign: 'center', padding: '3rem', color: '#6b7280' }}>
+                                <td colSpan={6} className={styles.emptyState}>
                                     No messages found
                                 </td>
                             </tr>
                         ) : (
                             messages.map((msg) => (
                                 <tr key={msg.id}>
-                                    <td style={{ whiteSpace: 'nowrap', color: '#9ca3af' }}>
+                                    <td className={styles.dateCell}>
                                         {new Date(msg.date).toLocaleDateString()}
                                     </td>
-                                    <td style={{ fontWeight: 600, color: '#fff' }}>{msg.name}</td>
+                                    <td className={styles.nameCell}>{msg.name}</td>
                                     <td>
-                                        <div style={{ fontSize: '0.9rem' }}>{msg.email}</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#9ca3af' }}>{msg.phone || '-'}</div>
-                                        <div style={{ fontSize: '0.85rem', color: '#6b7280' }}>{msg.address || '-'}</div>
+                                        <div className={styles.emailText}>{msg.email}</div>
+                                        <div className={styles.phoneText}>{msg.phone || '-'}</div>
+                                        <div className={styles.addressText}>{msg.address || '-'}</div>
                                     </td>
                                     <td>{msg.subject}</td>
                                     <td title={msg.message}>

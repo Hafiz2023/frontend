@@ -14,7 +14,7 @@ async function fetchApiProduct(slug: string) {
         const res = await fetch(`http://127.0.0.1:5000/api/public/products?category=Leather Patches`, { cache: 'no-store' });
         if (!res.ok) return null;
         const data = await res.json();
-        const found = (data as any[]).find((p) => p.slug === slug || p.sku.toLowerCase() === slug.toLowerCase());
+        const found = (data as {slug: string, sku: string, id: string | number, title: string, category: string, image: string, description: string}[]).find((p) => p.slug === slug || p.sku?.toLowerCase() === slug.toLowerCase());
 
         if (found) {
             return {

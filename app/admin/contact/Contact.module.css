@@ -1,59 +1,89 @@
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem;
-    font-family: 'Inter', sans-serif;
-    color: #fff;
+    padding: 3rem 2rem;
+    font-family: var(--font-body);
+    color: var(--text-color);
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     margin-bottom: 3rem;
-    border-bottom: 1px solid #333;
-    padding-bottom: 1.5rem;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), transparent);
+    border-radius: 2px;
 }
 
 .title {
     font-size: 2.5rem;
-    font-weight: 700;
-    color: #c9a14a;
-    /* Gold Theme */
+    font-weight: 800;
+    color: var(--dark-gray);
+    font-family: var(--font-heading);
+    letter-spacing: -0.5px;
 }
 
 .tableContainer {
-    background: #18181b;
-    border-radius: 12px;
-    border: 1px solid #333;
-    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: var(--glass-border);
+    overflow-x: auto;
+    box-shadow: var(--glass-shadow);
+    padding: 1.5rem;
 }
 
 .table {
     width: 100%;
     border-collapse: collapse;
-    color: #d1d5db;
+    color: var(--text-color);
+    min-width: 800px;
+    background: white;
 }
 
 .table th {
-    background: #27272a;
-    padding: 1rem;
+    background: #f8fafc;
+    padding: 1.2rem 1.5rem;
     text-align: left;
     font-weight: 600;
-    color: #c9a14a;
-    border-bottom: 1px solid #333;
+    color: #475569;
+    border-bottom: 1px solid #f1f5f9;
     white-space: nowrap;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
 }
 
 .table td {
-    padding: 1rem;
-    border-bottom: 1px solid #333;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
     vertical-align: top;
 }
 
+.table tr {
+    transition: background-color 0.2s;
+}
+
 .table tr:hover {
-    background: #27272a;
+    background: #f1f5f9;
 }
 
 .messageContent {
@@ -61,6 +91,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #64748b;
 }
 
 .loading {
@@ -68,8 +99,15 @@
     justify-content: center;
     align-items: center;
     min-height: 50vh;
-    color: #c9a14a;
+    color: var(--primary-color);
     font-size: 1.5rem;
+    font-family: var(--font-heading);
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
 }
 
 .actionBtn {
@@ -77,23 +115,78 @@
     border: none;
     cursor: pointer;
     margin-right: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    transition: background 0.2s;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+    font-weight: 600;
+    font-size: 0.85rem;
 }
 
 .editBtn {
-    color: #60a5fa;
+    color: #0284c7;
+    background-color: #f0f9ff;
+    border: 1px solid #e0f2fe;
 }
 
 .editBtn:hover {
-    background: rgba(96, 165, 250, 0.1);
+    background: #e0f2fe;
+    transform: translateY(-1px);
 }
 
 .deleteBtn {
-    color: #f87171;
+    color: #ef4444;
+    background-color: #fef2f2;
+    border: 1px solid #fee2e2;
 }
 
 .deleteBtn:hover {
-    background: rgba(248, 113, 113, 0.1);
+    background: #fee2e2;
+    transform: translateY(-1px);
 }
+
+/* Added classes to replace inline styles */
+.backLink {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    transition: color 0.2s ease;
+}
+
+.backLink:hover {
+    color: var(--primary-color, #3b82f6);
+}
+
+.emptyState {
+    text-align: center;
+    padding: 3rem;
+    color: #6b7280;
+}
+
+.dateCell {
+    white-space: nowrap;
+    color: #9ca3af;
+}
+
+.nameCell {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.emailText {
+    font-size: 0.9rem;
+    color: #334155;
+}
+
+.phoneText {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+.addressText {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 2px;
+}

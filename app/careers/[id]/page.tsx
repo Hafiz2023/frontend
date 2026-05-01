@@ -6,7 +6,7 @@ import Link from 'next/link';
 import styles from './page.module.css';
 import PageHeader from '@/components/PageHeader';
 import CursorEffect from '@/components/CursorEffect';
-import { Briefcase, MapPin, Clock, Calendar, CheckCircle } from 'lucide-react';
+import { Briefcase, MapPin, Clock, Calendar } from 'lucide-react';
 
 interface Career {
     id: number;

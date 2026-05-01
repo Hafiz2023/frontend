@@ -55,7 +55,7 @@ export async function generateStaticParams() {
     return [{ page: '1' }];
 }
 
-export default function WovenLabelsPaginated({ params }: { params: { page: string } }) {
+export default function WovenLabelsPaginated() {
     const categorySlug = 'woven-labels';
     const allCategories = getAllCategories();
     // Use params.page if we had real pagination logic. For now, we only have 1 page of content.

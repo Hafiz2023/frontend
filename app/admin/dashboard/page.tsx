@@ -3,16 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Dashboard.module.css';
 
-interface Message {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    address: string;
-    subject: string;
-    message: string;
-    date: string;
-}
+// Core Components
+import StatsGrid from '@/components/core/admin/StatsGrid';
+import ContactMessages, { Message } from '@/components/core/admin/ContactMessages';
+import ReturnRequests from '@/components/core/admin/ReturnRequests';
+import MessageModals from '@/components/core/admin/MessageModals';
 
 interface DashboardStats {
     customers: number;
@@ -149,34 +144,7 @@ export default function AdminDashboard() {
             </header>
 
             {/* Stats Grid */}
-            {stats && (
-                <div className={styles.statsGrid}>
-                    <div className={styles.statCard}>
-                        <h3>Customers</h3>
-                        <p className={styles.statValue}>{stats.customers}</p>
-                    </div>
-                    <div className={styles.statCard}>
-                        <h3>Vendors</h3>
-                        <p className={styles.statValue}>{stats.vendors}</p>
-                    </div>
-                    <div className={styles.statCard}>
-                        <h3>Products</h3>
-                        <p className={styles.statValue}>{stats.products}</p>
-                    </div>
-                    <div className={styles.statCard}>
-                        <h3>Invoices</h3>
-                        <p className={styles.statValue}>{stats.invoices}</p>
-                    </div>
-                    <div className={`${styles.statCard} ${styles.warning}`}>
-                        <h3>Low Stock</h3>
-                        <p className={styles.statValue}>{stats.low_stock}</p>
-                    </div>
-                    <div className={`${styles.statCard} ${styles.info}`}>
-                        <h3>Pending Bills</h3>
-                        <p className={styles.statValue}>{stats.pending_invoices}</p>
-                    </div>
-                </div>
-            )}
+            {stats && <StatsGrid stats={stats} />}
 
             <div className={styles.section}>
                 <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', borderBottom: '1px solid #333', paddingBottom: '0.5rem' }}>
@@ -213,226 +181,31 @@ export default function AdminDashboard() {
                 </div>
 
                 {activeTab === 'messages' && (
-                    <>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                            <h2 className={styles.sectionTitle}>Contact Messages</h2>
-                            <button onClick={openAddModal} style={{ padding: '0.5rem 1rem', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
-                                + Add New
-                            </button>
-                        </div>
-
-                        <div className={styles.tableContainer}>
-                            <table className={styles.table}>
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Address</th>
-                                        <th>Subject</th>
-                                        <th>Message</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {messages.length === 0 ? (
-                                        <tr>
-                                            <td colSpan={8} style={{ textAlign: 'center', padding: '2rem' }}>No messages found</td>
-                                        </tr>
-                                    ) : (
-                                        messages.map((msg) => (
-                                            <tr key={msg.id}>
-                                                <td>{new Date(msg.date).toLocaleDateString()}</td>
-                                                <td>{msg.name}</td>
-                                                <td>{msg.email}</td>
-                                                <td>{msg.phone || '-'}</td>
-                                                <td>{msg.address || '-'}</td>
-                                                <td>{msg.subject}</td>
-                                                <td>
-                                                    <div className={styles.messageContent} title={msg.message}>
-                                                        {msg.message.length > 50 ? msg.message.substring(0, 50) + '...' : msg.message}
-                                                    </div>
-                                                </td>
-                                                <td style={{ display: 'flex', alignItems: 'center' }}>
-                                                    <button
-                                                        onClick={() => openViewModal(msg)}
-                                                        className={styles.viewBtn}
-                                                        style={{ marginRight: '0.5rem' }}
-                                                    >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                                        View
-                                                    </button>
-                                                    <button onClick={() => openEditModal(msg)} style={{ marginRight: '0.5rem', background: 'none', border: 'none', color: '#3b82f6', cursor: 'pointer' }}>Edit</button>
-                                                    <button onClick={() => handleDelete(msg.id)} style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer' }}>Delete</button>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    )}
-                                </tbody>
-                            </table>
-                        </div>
-                    </>
+                    <ContactMessages 
+                        messages={messages}
+                        openAddModal={openAddModal}
+                        openViewModal={openViewModal}
+                        openEditModal={openEditModal}
+                        handleDelete={handleDelete}
+                    />
                 )}
 
                 {activeTab === 'returns' && (
-                    <>
-                        <h2 className={styles.sectionTitle}>Return Requests</h2>
-                        <div className={styles.tableContainer}>
-                            <table className={styles.table}>
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Order #</th>
-                                        <th>Email</th>
-                                        <th>Reason</th>
-                                        <th>Details</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {returns.length === 0 ? (
-                                        <tr>
-                                            <td colSpan={6} style={{ textAlign: 'center', padding: '2rem' }}>No return requests found</td>
-                                        </tr>
-                                    ) : (
-                                        returns.map((req) => (
-                                            <tr key={req.id}>
-                                                <td>{new Date(req.date).toLocaleDateString()}</td>
-                                                <td>{req.order_number}</td>
-                                                <td>{req.email}</td>
-                                                <td>{req.reason}</td>
-                                                <td>{req.details}</td>
-                                                <td>
-                                                    <span style={{
-                                                        padding: '0.25rem 0.5rem',
-                                                        borderRadius: '4px',
-                                                        fontSize: '0.85rem',
-                                                        background: req.status === 'Pending' ? '#f59e0b20' : '#10b98120',
-                                                        color: req.status === 'Pending' ? '#f59e0b' : '#10b981'
-                                                    }}>
-                                                        {req.status}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    )}
-                                </tbody>
-                            </table>
-                        </div>
-                    </>
+                    <ReturnRequests returns={returns} />
                 )}
             </div>
 
-            {/* View Modal */}
-            {isViewModalOpen && (
-                <div className={styles.modalOverlay} onClick={() => setIsViewModalOpen(false)}>
-                    <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
-                        <div className={styles.modalHeader}>
-                            <h3 className={styles.modalTitle}>Contact Message</h3>
-                            <button className={styles.closeBtn} onClick={() => setIsViewModalOpen(false)}>&times;</button>
-                        </div>
-
-                        <div className={styles.modalBody}>
-                            <div className={styles.detailRow}>
-                                <span className={styles.label}>From:</span>
-                                <div className={styles.value}>
-                                    <strong>{currentMessage.name}</strong> &lt;{currentMessage.email}&gt;
-                                </div>
-                                <div style={{ fontSize: '0.9rem', color: '#6b7280', marginTop: '0.25rem' }}>
-                                    {currentMessage.phone} | {currentMessage.address || 'No Address'}
-                                </div>
-                                <div style={{ fontSize: '0.85rem', color: '#9ca3af', marginTop: '0.25rem' }}>
-                                    {currentMessage.date ? new Date(currentMessage.date).toLocaleString() : ''}
-                                </div>
-                            </div>
-
-                            <div className={styles.detailRow}>
-                                <span className={styles.label}>Subject:</span>
-                                <div className={styles.value}>{currentMessage.subject}</div>
-                            </div>
-
-                            <div className={styles.detailRow}>
-                                <span className={styles.label}>Message:</span>
-                                <div className={styles.messageBox}>
-                                    {currentMessage.message}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className={styles.modalActions}>
-                            <button className={`${styles.btn} ${styles.btnSecondary}`} onClick={() => setIsViewModalOpen(false)}>Close</button>
-                            <a href={`mailto:${currentMessage.email}`} className={`${styles.btn} ${styles.btnPrimary}`} style={{ textDecoration: 'none' }}>
-                                Reply
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Add/Edit Modal */}
-            {isModalOpen && (
-                <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
-                    <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
-                        <div className={styles.modalHeader}>
-                            <h3 className={styles.modalTitle}>{isEditing ? 'Edit Message' : 'Add New Message'}</h3>
-                            <button className={styles.closeBtn} onClick={() => setIsModalOpen(false)}>&times;</button>
-                        </div>
-
-                        <form onSubmit={handleSave}>
-                            <div className={styles.modalBody} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                <input
-                                    placeholder="Name"
-                                    value={currentMessage.name || ''}
-                                    onChange={e => setCurrentMessage({ ...currentMessage, name: e.target.value })}
-                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem' }}
-                                    required
-                                />
-                                <input
-                                    placeholder="Email"
-                                    type="email"
-                                    value={currentMessage.email || ''}
-                                    onChange={e => setCurrentMessage({ ...currentMessage, email: e.target.value })}
-                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem' }}
-                                    required
-                                />
-                                <input
-                                    placeholder="Phone"
-                                    type="tel"
-                                    value={currentMessage.phone || ''}
-                                    onChange={e => setCurrentMessage({ ...currentMessage, phone: e.target.value })}
-                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem' }}
-                                />
-                                <input
-                                    placeholder="Address"
-                                    value={currentMessage.address || ''}
-                                    onChange={e => setCurrentMessage({ ...currentMessage, address: e.target.value })}
-                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem' }}
-                                />
-                                <input
-                                    placeholder="Subject"
-                                    value={currentMessage.subject || ''}
-                                    onChange={e => setCurrentMessage({ ...currentMessage, subject: e.target.value })}
-                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem' }}
-                                />
-                                <textarea
-                                    placeholder="Message"
-                                    rows={5}
-                                    value={currentMessage.message || ''}
-                                    onChange={e => setCurrentMessage({ ...currentMessage, message: e.target.value })}
-                                    style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '1rem', fontFamily: 'inherit' }}
-                                    required
-                                ></textarea>
-                            </div>
-
-                            <div className={styles.modalActions}>
-                                <button type="button" className={`${styles.btn} ${styles.btnSecondary}`} onClick={() => setIsModalOpen(false)}>Cancel</button>
-                                <button type="submit" className={`${styles.btn} ${styles.btnPrimary}`}>Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
+            {/* Modals placed at the bottom */}
+            <MessageModals 
+                isViewModalOpen={isViewModalOpen}
+                setIsViewModalOpen={setIsViewModalOpen}
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+                isEditing={isEditing}
+                currentMessage={currentMessage}
+                setCurrentMessage={setCurrentMessage}
+                handleSave={handleSave}
+            />
         </div>
     );
 }

@@ -51,7 +51,7 @@ const blogPosts: Record<string, BlogPostData> = {
 
                 <h2>Conclusion</h2>
                 <p>
-                    Investing in high-quality woven labels is a strategic decision for any fashion brand. These small, often-overlooked details are powerful tools that enhance brand recognition, elevate perceived quality, ensure durability, and contribute to a superior customer experience. By carefully selecting and designing your woven labels, you can craft a silent yet impactful signature that communicates your brand's values and commitment to excellence.
+                    Investing in high-quality woven labels is a strategic decision for any fashion brand. These small, often-overlooked details are powerful tools that enhance brand recognition, elevate perceived quality, ensure durability, and contribute to a superior customer experience. By carefully selecting and designing your woven labels, you can craft a silent yet impactful signature that communicates your brand&apos;s values and commitment to excellence.
                 </p>
             </>
         )
@@ -89,6 +89,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
                     </div>
                 </header>
 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={post.image} alt={post.title} className={styles.heroImage} />
 
                 <div className={styles.content}>

@@ -1,10 +1,9 @@
 .heroWrapper {
     position: relative;
     width: 100%;
-    height: 90vh;
-    /* Increased height for impact */
-    min-height: 650px;
-    background-color: #050505;
+    height: 95vh;
+    min-height: 700px;
+    background-color: #0f172a;
     overflow: hidden;
 }
 
@@ -43,17 +42,12 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
-    animation: zoomEffect 25s infinite alternate linear;
+    animation: zoomEffect 30s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes zoomEffect {
-    0% {
-        transform: scale(1);
-    }
-
-    100% {
-        transform: scale(1.15);
-    }
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
 }
 
 .overlay {
@@ -62,8 +56,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    /* Gradient for better text readability and modern look */
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
     z-index: 2;
 }
 
@@ -72,7 +65,7 @@
     z-index: 10;
     text-align: center;
     color: white;
-    max-width: 1200px;
+    max-width: 1000px;
     padding: 0 20px;
     margin: 0 auto;
     display: flex;
@@ -81,51 +74,38 @@
     justify-content: center;
 }
 
-/* Base keyframes for fade in up */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .slideTitle {
-    font-family: inherit;
-    font-size: 5.5rem;
-    /* Larger title */
+    font-family: var(--font-heading);
+    font-size: 6rem;
     font-weight: 800;
-    margin-bottom: 1.5rem;
-    line-height: 1.1;
-    text-transform: uppercase;
-    /* More impactful */
-    letter-spacing: -2px;
-    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.6);
-
+    margin-bottom: 1.2rem;
+    line-height: 1.05;
+    text-transform: capitalize;
+    letter-spacing: -2.5px;
+    background: linear-gradient(to right, #ffffff, #e2e8f0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
     opacity: 0;
-    /* Init hidden */
-    animation: fadeInUp 0.8s ease forwards;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: 0.3s;
 }
 
 .slideSubtitle {
-    font-size: 1.25rem;
-    line-height: 1.7;
-    margin-bottom: 3.5rem;
-    color: #e0e0e0;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
-    font-weight: 300;
-
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    color: #cbd5e1;
+    font-family: var(--font-body);
+    font-weight: 400;
     opacity: 0;
-    /* Init hidden */
-    animation: fadeInUp 0.8s ease forwards;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: 0.5s;
 }
 
@@ -133,29 +113,27 @@
     display: flex;
     justify-content: center;
     opacity: 0;
-    /* Init hidden */
-    animation: fadeInUp 0.8s ease forwards;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: 0.7s;
 }
 
 .primaryButton {
     display: inline-block;
-    padding: 1.2rem 4rem;
-    background-color: #a08155;
+    padding: 1.2rem 3.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
     color: white;
+    font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.05rem;
     border-radius: 50px;
-    /* Pill shape is more modern */
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     cursor: pointer;
     border: none;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
     position: relative;
     overflow: hidden;
-    z-index: 1;
 }
 
 .primaryButton::after {
@@ -165,22 +143,18 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s ease;
-    z-index: -1;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
 .primaryButton:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
-    background-color: #8f7248;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
 }
 
 .primaryButton:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+    transform: translateX(100%);
 }
 
 .dotsContainer {
@@ -194,74 +168,65 @@
 }
 
 .dot {
-    width: 60px;
-    /* Longer for modern look */
+    width: 40px;
     height: 4px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
     border: none;
-    border-radius: 2px;
+    border-radius: 4px;
     cursor: pointer;
     padding: 0;
-    transition: all 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .dotActive {
-    background-color: #fff;
-    width: 80px;
-    /* Active dot grows */
+    background-color: var(--primary-color);
+    width: 70px;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
 /* Media Queries */
 @media (max-width: 1024px) {
     .slideTitle {
-        font-size: 4rem;
+        font-size: 4.5rem;
     }
 }
 
 @media (max-width: 768px) {
     .heroWrapper {
-        height: 80vh;
-        min-height: 500px;
+        height: 85vh;
+        min-height: 550px;
     }
-
     .slideTitle {
-        font-size: 2.5rem;
-        /* Better scaling */
+        font-size: 3.5rem;
         letter-spacing: -1px;
     }
-
     .slideSubtitle {
-        font-size: 1rem;
+        font-size: 1.1rem;
         max-width: 90%;
     }
-
     .primaryButton {
-        padding: 1rem 3rem;
-        font-size: 0.9rem;
+        padding: 1rem 2.5rem;
+        font-size: 0.95rem;
     }
 }
 
 @media (max-width: 480px) {
     .slideTitle {
-        font-size: 2rem;
+        font-size: 2.5rem;
         margin-bottom: 1rem;
         line-height: 1.2;
     }
-
     .slideSubtitle {
-        font-size: 0.95rem;
+        font-size: 1rem;
         margin-bottom: 2rem;
     }
-
     .dotsContainer {
         bottom: 30px;
     }
-
     .dot {
-        width: 40px;
+        width: 30px;
     }
-
     .dotActive {
-        width: 60px;
+        width: 50px;
     }
 }

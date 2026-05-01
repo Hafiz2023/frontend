@@ -6,6 +6,15 @@ import { getAllCategories, getProducts } from '@/lib/products';
 import PageHeader from '@/components/PageHeader';
 import styles from './page.module.css';
 
+interface Product {
+    id: number | string;
+    title: string;
+    category: string;
+    image?: string;
+    imageSrc?: string;
+    slug: string;
+}
+
 export default function LacePage() {
     const categorySlug = 'lace';
 
@@ -24,7 +33,7 @@ export default function LacePage() {
             };
         }
         return null;
-    }).filter(p => p !== null) as any[];
+    }).filter(p => p !== null) as Product[];
 
     const allCategories = getAllCategories();
 
@@ -46,7 +55,7 @@ export default function LacePage() {
                                     key={product.id}
                                     title={product.title}
                                     category={product.category}
-                                    imageSrc={product.imageSrc}
+                                    imageSrc={product.imageSrc || ''}
                                     slug={product.slug}
                                     baseUrl="/category/lace"
                                 />

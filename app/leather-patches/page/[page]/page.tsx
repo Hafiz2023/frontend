@@ -58,7 +58,7 @@ export default async function LeatherPatchesPaginationPage({ params }: { params:
         const start = (pageNum - 1) * itemsPerPage;
         const end = start + itemsPerPage;
 
-        products = apiData.slice(start, end).map((p: any) => ({
+        products = apiData.slice(start, end).map((p: Product) => ({
             id: p.id,
             title: p.title,
             category: p.category,
@@ -68,7 +68,7 @@ export default async function LeatherPatchesPaginationPage({ params }: { params:
     } else {
         // 2. Fallback
         const { data, totalPages: mockTotal } = getMockProducts(categorySlug, pageNum, itemsPerPage);
-        products = data.map((d: any) => ({
+        products = data.map((d: Product) => ({
             id: d.id,
             title: d.title,
             category: d.category,
