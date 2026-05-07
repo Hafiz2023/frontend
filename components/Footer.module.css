@@ -1,17 +1,34 @@
 .footer {
-    background: #0f0f0f;
+    background: #080808;
     color: #aeaeae;
-    padding: 5rem 2rem 2rem;
+    padding: 5rem 0 0;
     font-family: 'Outfit', sans-serif;
-    border-top: 1px solid #222;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.glowEffect {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201, 161, 74, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
+    padding: 0 2rem;
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
     gap: 4rem;
+    position: relative;
+    z-index: 1;
 }
 
 @media (max-width: 1024px) {
@@ -28,28 +45,51 @@
     }
 }
 
-.brandColumn h3 {
+.brandColumn {
+    padding-right: 2rem;
+}
+
+.brandLogo {
     color: #fff;
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
     letter-spacing: -0.5px;
+    display: inline-block;
+}
+
+.brandLogo span {
+    color: #c9a14a;
 }
 
 .brandDescription {
-    line-height: 1.7;
+    line-height: 1.8;
     margin-bottom: 2rem;
     font-size: 0.95rem;
-    max-width: 320px;
+    color: #888;
+    max-width: 340px;
 }
 
 .sectionTitle {
     color: #fff;
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background: #c9a14a;
+    border-radius: 2px;
 }
 
 .linkList {
@@ -59,7 +99,7 @@
 }
 
 .linkList li {
-    margin-bottom: 0.9rem;
+    margin-bottom: 1rem;
 }
 
 .linkList a {
@@ -67,38 +107,56 @@
     text-decoration: none;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+}
+
+.linkIcon {
+    margin-right: 8px;
+    color: #555;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
 }
 
 .linkList a:hover {
-    color: #c9a14a;
+    color: #fff;
     transform: translateX(5px);
 }
 
+.linkList a:hover .linkIcon {
+    color: #c9a14a;
+}
+
 .contactInfo p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     font-size: 0.95rem;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    align-items: flex-start;
+    color: #888;
+}
+
+.contactIcon {
+    margin-top: 4px;
+    margin-right: 12px;
+    color: #c9a14a;
+    flex-shrink: 0;
 }
 
 .socialIcons {
     display: flex;
-    gap: 15px;
-    margin-top: 2rem;
+    gap: 12px;
 }
 
 .socialIcons a {
-    width: 42px;
-    height: 42px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #aaa;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -106,42 +164,52 @@
     background: #c9a14a;
     border-color: #c9a14a;
     color: #000;
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 15px rgba(201, 161, 74, 0.3);
 }
 
 .newsletter {
-    margin-top: 1rem;
+    margin-top: 2.5rem;
+}
+
+.newsletterText {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    color: #888;
 }
 
 .inputGroup {
     display: flex;
-    margin-bottom: 1rem;
     position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 4px;
+    transition: all 0.3s ease;
 }
 
-.newsletter input {
-    width: 100%;
-    padding: 1rem;
-    padding-right: 50px;
+.inputGroup:focus-within {
+    border-color: rgba(201, 161, 74, 0.5);
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid #333;
-    border-radius: 8px;
+}
+
+.inputGroup input {
+    width: 100%;
+    padding: 12px 15px;
+    background: transparent;
+    border: none;
     color: #fff;
     outline: none;
-    font-size: 0.95rem;
-    transition: border-color 0.3s;
+    font-size: 0.9rem;
 }
 
-.newsletter input:focus {
-    border-color: #c9a14a;
+.inputGroup input::placeholder {
+    color: #555;
 }
 
-.newsletter button {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    height: calc(100% - 10px);
-    width: 40px;
+.subscribeBtn {
+    width: 44px;
+    height: 44px;
     background: #c9a14a;
     border: none;
     border-radius: 6px;
@@ -151,21 +219,30 @@
     align-items: center;
     justify-content: center;
     transition: all 0.3s;
+    font-size: 1.1rem;
 }
 
-.newsletter button:hover {
+.subscribeBtn:hover {
     background: #e0b454;
+    transform: scale(1.05);
+}
+
+.bottomBarWrapper {
+    margin-top: 5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: #050505;
 }
 
 .bottomBar {
-    margin-top: 5rem;
-    padding-top: 2rem;
-    border-top: 1px solid #222;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    position: relative;
 }
 
 .copyright {
@@ -173,9 +250,42 @@
     color: #666;
 }
 
+.highlight {
+    color: #c9a14a;
+    font-weight: 500;
+}
+
+.backToTop {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.backToTop:hover {
+    background: #c9a14a;
+    color: #000;
+    border-color: #c9a14a;
+}
+
 .paymentMethods {
     display: flex;
-    gap: 1rem;
-    font-size: 1.5rem;
-    color: #555;
+    gap: 15px;
+    font-size: 1.6rem;
+    color: #444;
+}
+
+.paymentMethods i {
+    transition: color 0.3s ease;
+}
+
+.paymentMethods i:hover {
+    color: #c9a14a;
 }

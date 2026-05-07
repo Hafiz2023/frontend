@@ -19,7 +19,7 @@ const blogPosts: Record<string, BlogPostData> = {
         category: "Product Guide",
         date: "Feb 1, 2024",
         author: "Admin",
-        image: "https://images.unsplash.com/photo-1605518216965-7bc042f9540b?auto=format&fit=crop&w=1200&q=80",
+        image: "/hero-bg.png",
         content: (
             <>
                 <p>

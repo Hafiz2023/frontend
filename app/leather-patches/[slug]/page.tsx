@@ -81,12 +81,13 @@ export default async function LeatherPatchDetailPage({ params }: { params: Promi
                     </header>
 
                     <div className={styles.featuredImageWrapper}>
-                        <Image
+                        {/* Use standard img to avoid next.config restart requirements */}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src={product.image}
                             alt={product.title}
-                            fill
                             className={styles.featuredImage}
-                            priority
+                            style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                         />
                     </div>
 

@@ -33,7 +33,7 @@ export default function BlogPage() {
             title: "The Art of Woven Labels",
             slug: "importance-of-woven-labels",
             excerpt: "Why high-definition damask labels are the subtle detail that elevates a garment from ordinary to premium.",
-            image_url: "https://images.unsplash.com/photo-1605518216965-7bc042f9540b?auto=format&fit=crop&w=800&q=80",
+            image_url: "/hero-bg.png",
             published_date: "Feb 1, 2024",
             author: "Admin",
             category: "Product Guide"

@@ -18,12 +18,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ title, imageSrc, category, sl
     return (
         <Link href={href} className={styles.card}>
             <div className={styles.imageContainer}>
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                     src={imageSrc || '/tag-black-gold.png'} // Fallback if empty string
                     alt={title}
                     className={styles.image}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
                 <div className={styles.overlay}>
                     <span className={styles.quickViewBtn}>View Details</span>
