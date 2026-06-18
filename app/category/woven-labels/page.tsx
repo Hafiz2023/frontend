@@ -4,6 +4,7 @@ import ProductCard from '@/components/ProductCard';
 import { getAllCategories } from '@/lib/products';
 import PageHeader from '@/components/PageHeader';
 import styles from './page.module.css';
+import { SearchBar } from '@/components/ui/SearchBar';
 
 export default function WovenLabelsPage() {
     const categorySlug = 'woven-labels';
@@ -95,10 +96,7 @@ export default function WovenLabelsPage() {
                 <aside className={styles.sidebar}>
                     {/* Search Widget */}
                     <div className={styles.widget}>
-                        <form className={styles.searchForm}>
-                            <input type="text" placeholder="Search..." className={styles.searchInput} />
-                            <button type="submit" className={styles.searchButton}>Search</button>
-                        </form>
+                        <SearchBar />
                     </div>
 
                     {/* Recent Posts Widget */}

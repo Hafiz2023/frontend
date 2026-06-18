@@ -6,6 +6,7 @@ import { getAllCategories } from '@/lib/products';
 import PageHeader from '@/components/PageHeader';
 import styles from '../../page.module.css';
 import { getProducts as getMockProducts } from '@/lib/products';
+import { SearchBar } from '@/components/ui/SearchBar';
 
 // Helper to fetch products from API
 async function fetchApiProducts(categorySlug: string) {
@@ -141,10 +142,7 @@ export default async function LeatherPatchesPaginationPage({ params }: { params:
                 <aside className={styles.sidebar}>
                     <div className={styles.widget}>
                         <h3 className={styles.widgetTitle}>Search</h3>
-                        <form className={styles.searchForm}>
-                            <input type="text" placeholder="Search..." className={styles.searchInput} />
-                            <button type="submit" className={styles.searchButton}>Search</button>
-                        </form>
+                        <SearchBar />
                     </div>
 
                     <div className={styles.widget}>

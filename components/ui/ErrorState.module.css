@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  text-align: center;
+  background: rgba(254, 242, 242, 0.8);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: var(--glass-blur);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  border-radius: 50%;
+  background-color: rgba(239, 68, 68, 0.1);
+  margin-bottom: var(--space-md);
+}
+
+.icon {
+  color: #ef4444;
+  stroke-width: 1.5;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--heading-3);
+  font-weight: 600;
+  color: #991b1b;
+  margin-bottom: var(--space-xs);
+}
+
+.message {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: #b91c1c;
+  max-width: 400px;
+  margin-bottom: var(--space-lg);
+}
+
+.retryButton {
+  margin-top: var(--space-sm);
+}

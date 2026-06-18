@@ -1,9 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getProductBySlug, getAllCategories } from '@/lib/products';
 import styles from './page.module.css';
+import { SearchBar } from '@/components/ui/SearchBar';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 
 async function fetchApiProduct(slug: string) {
     try {
@@ -133,17 +135,17 @@ export default async function LeatherPatchDetailPage({ params }: { params: Promi
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                                 <div>
                                     <label htmlFor="name" style={{ display: 'block', marginBottom: '0.5rem' }}>Name *</label>
-                                    <input type="text" id="name" style={{ width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '4px', background: '#f9f9f9' }} />
+                                    <Input type="text" id="name" style={{ width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '4px', background: '#f9f9f9' }} />
                                 </div>
 
                                 <div>
                                     <label htmlFor="email" style={{ display: 'block', marginBottom: '0.5rem' }}>Email *</label>
-                                    <input type="email" id="email" style={{ width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '4px', background: '#f9f9f9' }} />
+                                    <Input type="email" id="email" style={{ width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '4px', background: '#f9f9f9' }} />
                                 </div>
 
                                 <div>
                                     <label htmlFor="website" style={{ display: 'block', marginBottom: '0.5rem' }}>Website</label>
-                                    <input type="text" id="website" style={{ width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '4px', background: '#f9f9f9' }} />
+                                    <Input type="text" id="website" style={{ width: '100%', padding: '0.8rem', border: '1px solid #ddd', borderRadius: '4px', background: '#f9f9f9' }} />
                                 </div>
                             </div>
 
@@ -162,7 +164,7 @@ export default async function LeatherPatchDetailPage({ params }: { params: Promi
                                 </div>
                             </div>
 
-                            <button type="button" style={{ justifySelf: 'start', padding: '1rem 2.5rem', background: '#a38348', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', fontSize: '1rem' }}>Post Comment</button>
+                            <Button type="button" style={{ justifySelf: 'start', padding: '1rem 2.5rem', background: '#a38348', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', fontSize: '1rem' }}>Post Comment</Button>
                         </form>
                     </div>
 
@@ -171,10 +173,7 @@ export default async function LeatherPatchDetailPage({ params }: { params: Promi
                 <aside className={styles.sidebar}>
                     {/* Search Widget */}
                     <div className={styles.widget}>
-                        <form className={styles.searchForm}>
-                            <input type="text" placeholder="Search..." className={styles.searchInput} />
-                            <button type="submit" className={styles.searchButton}>Search</button>
-                        </form>
+                        <SearchBar />
                     </div>
 
                     {/* Recent Posts Widget */}

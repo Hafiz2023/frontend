@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import styles from './Faq.module.css';
 import Link from 'next/link';
+import { Button } from '@/components/ui/Button';
 
 export default function FAQPage() {
     // FAQs state to toggle active item
@@ -52,7 +53,7 @@ export default function FAQPage() {
                         key={index}
                         className={`${styles.faqItem} ${activeIndex === index ? styles.active : ''}`}
                     >
-                        <button
+                        <Button
                             className={styles.question}
                             onClick={() => toggleFaq(index)}
                         >
@@ -68,7 +69,7 @@ export default function FAQPage() {
                             >
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
-                        </button>
+                        </Button>
                         <div className={styles.answer}>
                             <p>{faq.answer}</p>
                         </div>

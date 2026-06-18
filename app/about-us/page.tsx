@@ -4,6 +4,7 @@ import { getAllCategories } from '@/lib/products';
 import CursorEffect from '@/components/CursorEffect';
 import styles from './page.module.css';
 import PageHeader from '@/components/PageHeader';
+import { SearchBar } from '@/components/ui/SearchBar';
 
 export default function AboutUsPage() {
     const allCategories = getAllCategories();
@@ -60,10 +61,7 @@ export default function AboutUsPage() {
                     {/* Search Widget */}
                     <div className={styles.widget}>
                         <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Search</label>
-                        <form className={styles.searchForm}>
-                            <input type="text" className={styles.searchInput} />
-                            <button type="submit" className={styles.searchButton}>Search</button>
-                        </form>
+                        <SearchBar />
                     </div>
 
                     {/* Recent Posts Widget */}

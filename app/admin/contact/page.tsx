@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Contact.module.css';
 import Link from 'next/link';
+import { Button } from '@/components/ui/Button';
 
 interface Message {
     id: number;
@@ -106,13 +107,13 @@ export default function ContactAdminPage() {
                                         </div>
                                     </td>
                                     <td>
-                                        <button
+                                        <Button
                                             onClick={() => handleDelete(msg.id)}
                                             className={`${styles.actionBtn} ${styles.deleteBtn}`}
                                             title="Delete"
                                         >
                                             Delete
-                                        </button>
+                                        </Button>
                                     </td>
                                 </tr>
                             ))

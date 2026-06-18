@@ -6,6 +6,8 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import PageHeader from '@/components/PageHeader';
 import CursorEffect from '@/components/CursorEffect';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 
 export default function QualityLabelsPage() {
     return (
@@ -73,19 +75,19 @@ export default function QualityLabelsPage() {
                             <div className={styles.formGrid}>
                                 <div className={styles.formGroup}>
                                     <label htmlFor="name">Name *</label>
-                                    <input type="text" id="name" className={styles.formInput} />
+                                    <Input type="text" id="name" className={styles.formInput} />
                                 </div>
                                 <div className={styles.formGroup}>
                                     <label htmlFor="email">Email *</label>
-                                    <input type="email" id="email" className={styles.formInput} />
+                                    <Input type="email" id="email" className={styles.formInput} />
                                 </div>
                                 <div className={styles.formGroup}>
                                     <label htmlFor="website">Website</label>
-                                    <input type="text" id="website" className={styles.formInput} />
+                                    <Input type="text" id="website" className={styles.formInput} />
                                 </div>
                             </div>
 
-                            <button type="button" className={styles.submitButton}>Post Comment</button>
+                            <Button type="button" className={styles.submitButton}>Post Comment</Button>
                         </form>
                     </div>
                 </main>
@@ -94,8 +96,8 @@ export default function QualityLabelsPage() {
                     <div className={styles.widget}>
                         <h3 className="text-white font-bold mb-4">Search</h3>
                         <form>
-                            <input type="text" placeholder="Search..." className={styles.searchInput} />
-                            <button type="submit" className={styles.searchButton}>Search</button>
+                            <Input type="text" placeholder="Search..." className={styles.searchInput} />
+                            <Button type="submit" className={styles.searchButton}>Search</Button>
                         </form>
                     </div>
 

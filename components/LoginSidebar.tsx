@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import styles from './LoginSidebar.module.css';
 import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 
 export default function LoginSidebar() {
     const router = useRouter();
@@ -58,7 +60,7 @@ export default function LoginSidebar() {
                 <form onSubmit={handleLogin}>
                     <div className={styles.inputGroup}>
                         <label htmlFor="username" className={styles.label}>Username</label>
-                        <input
+                        <Input
                             type="text"
                             id="username"
                             value={username}
@@ -71,7 +73,7 @@ export default function LoginSidebar() {
 
                     <div className={styles.inputGroup}>
                         <label htmlFor="password" className={styles.label}>Password</label>
-                        <input
+                        <Input
                             type="password"
                             id="password"
                             value={password}
@@ -82,9 +84,9 @@ export default function LoginSidebar() {
                         />
                     </div>
 
-                    <button type="submit" className={styles.button} disabled={isLoading}>
+                    <Button type="submit" className={styles.button} disabled={isLoading}>
                         {isLoading ? 'Logging in...' : 'Accedi al Dashboard'}
-                    </button>
+                    </Button>
                 </form>
             </div>
         </aside>

@@ -1,8 +1,8 @@
 .footer {
     background: #080808;
     color: #aeaeae;
-    padding: 5rem 0 0;
-    font-family: 'Outfit', sans-serif;
+    padding: var(--space-2xl) 0 0;
+    font-family: var(--font-heading);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
     overflow: hidden;
@@ -21,64 +21,63 @@
 }
 
 .container {
-    max-width: 1400px;
+    max-width: var(--container-width, 1440px);
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--container-padding);
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    gap: var(--space-xl);
     position: relative;
     z-index: 1;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
     .container {
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
     .container {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
     }
 }
 
 .brandColumn {
-    padding-right: 2rem;
+    padding-right: clamp(0rem, 2vw, 2rem);
 }
 
 .brandLogo {
     color: #fff;
-    font-size: 2rem;
+    font-size: var(--heading-3);
     font-weight: 800;
-    margin-bottom: 1.2rem;
+    margin-bottom: var(--space-md);
     letter-spacing: -0.5px;
     display: inline-block;
 }
 
 .brandLogo span {
-    color: #c9a14a;
+    color: var(--primary-color);
 }
 
 .brandDescription {
     line-height: 1.8;
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
+    margin-bottom: var(--space-md);
+    font-size: var(--text-base);
     color: #888;
     max-width: 340px;
 }
 
 .sectionTitle {
     color: #fff;
-    font-size: 1.1rem;
+    font-size: var(--text-lg);
     font-weight: 600;
-    margin-bottom: 1.8rem;
+    margin-bottom: var(--space-md);
     text-transform: uppercase;
     letter-spacing: 1px;
     position: relative;
-    padding-bottom: 0.5rem;
+    padding-bottom: var(--space-xs);
 }
 
 .sectionTitle::after {
@@ -88,7 +87,7 @@
     bottom: 0;
     width: 30px;
     height: 2px;
-    background: #c9a14a;
+    background: var(--primary-color);
     border-radius: 2px;
 }
 
@@ -99,13 +98,13 @@
 }
 
 .linkList li {
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-sm);
 }
 
 .linkList a {
     color: #888;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: var(--text-base);
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
@@ -115,7 +114,7 @@
     margin-right: 8px;
     color: #555;
     transition: all 0.3s ease;
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
 }
 
 .linkList a:hover {
@@ -124,12 +123,12 @@
 }
 
 .linkList a:hover .linkIcon {
-    color: #c9a14a;
+    color: var(--primary-color);
 }
 
 .contactInfo p {
-    margin-bottom: 1.2rem;
-    font-size: 0.95rem;
+    margin-bottom: var(--space-sm);
+    font-size: var(--text-base);
     display: flex;
     align-items: flex-start;
     color: #888;
@@ -138,13 +137,13 @@
 .contactIcon {
     margin-top: 4px;
     margin-right: 12px;
-    color: #c9a14a;
+    color: var(--primary-color);
     flex-shrink: 0;
 }
 
 .socialIcons {
     display: flex;
-    gap: 12px;
+    gap: var(--space-sm);
 }
 
 .socialIcons a {
@@ -161,20 +160,20 @@
 }
 
 .socialIcons a:hover {
-    background: #c9a14a;
-    border-color: #c9a14a;
+    background: var(--primary-color);
+    border-color: var(--primary-color);
     color: #000;
     transform: translateY(-4px);
     box-shadow: 0 4px 15px rgba(201, 161, 74, 0.3);
 }
 
 .newsletter {
-    margin-top: 2.5rem;
+    margin-top: var(--space-lg);
 }
 
 .newsletterText {
     margin-bottom: 12px;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     color: #888;
 }
 
@@ -200,7 +199,7 @@
     border: none;
     color: #fff;
     outline: none;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
 }
 
 .inputGroup input::placeholder {
@@ -210,7 +209,7 @@
 .subscribeBtn {
     width: 44px;
     height: 44px;
-    background: #c9a14a;
+    background: var(--primary-color);
     border: none;
     border-radius: 6px;
     color: #000;
@@ -223,35 +222,35 @@
 }
 
 .subscribeBtn:hover {
-    background: #e0b454;
+    background: var(--primary-hover);
     transform: scale(1.05);
 }
 
 .bottomBarWrapper {
-    margin-top: 5rem;
+    margin-top: var(--space-xl);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     background: #050505;
 }
 
 .bottomBar {
-    max-width: 1400px;
+    max-width: var(--container-width, 1440px);
     margin: 0 auto;
-    padding: 1.5rem 2rem;
+    padding: var(--space-md) var(--container-padding);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: var(--space-md);
     position: relative;
 }
 
 .copyright {
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     color: #666;
 }
 
 .highlight {
-    color: #c9a14a;
+    color: var(--primary-color);
     font-weight: 500;
 }
 
@@ -270,15 +269,15 @@
 }
 
 .backToTop:hover {
-    background: #c9a14a;
+    background: var(--primary-color);
     color: #000;
-    border-color: #c9a14a;
+    border-color: var(--primary-color);
 }
 
 .paymentMethods {
     display: flex;
     gap: 15px;
-    font-size: 1.6rem;
+    font-size: var(--text-xl);
     color: #444;
 }
 
@@ -287,5 +286,5 @@
 }
 
 .paymentMethods i:hover {
-    color: #c9a14a;
+    color: var(--primary-color);
 }

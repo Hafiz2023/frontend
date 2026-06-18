@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import styles from './Contact.module.css';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -64,7 +66,7 @@ export default function ContactPage() {
 
                     <div className={styles.formGroup}>
                         <label htmlFor="name">Name</label>
-                        <input
+                        <Input
                             type="text"
                             id="name"
                             name="name"
@@ -76,7 +78,7 @@ export default function ContactPage() {
 
                     <div className={styles.formGroup}>
                         <label htmlFor="email">Email</label>
-                        <input
+                        <Input
                             type="email"
                             id="email"
                             name="email"
@@ -88,7 +90,7 @@ export default function ContactPage() {
 
                     <div className={styles.formGroup}>
                         <label htmlFor="phone">Phone Number</label>
-                        <input
+                        <Input
                             type="tel"
                             id="phone"
                             name="phone"
@@ -99,7 +101,7 @@ export default function ContactPage() {
 
                     <div className={styles.formGroup}>
                         <label htmlFor="address">Address</label>
-                        <input
+                        <Input
                             type="text"
                             id="address"
                             name="address"
@@ -110,7 +112,7 @@ export default function ContactPage() {
 
                     <div className={styles.formGroup}>
                         <label htmlFor="subject">Subject</label>
-                        <input
+                        <Input
                             type="text"
                             id="subject"
                             name="subject"
@@ -131,9 +133,9 @@ export default function ContactPage() {
                         ></textarea>
                     </div>
 
-                    <button type="submit" className={styles.submitBtn} disabled={status === 'submitting'}>
+                    <Button type="submit" className={styles.submitBtn} disabled={status === 'submitting'}>
                         {status === 'submitting' ? 'Sending...' : 'Send Message'}
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>

@@ -8,6 +8,7 @@ import StatsGrid from '@/components/core/admin/StatsGrid';
 import ContactMessages, { Message } from '@/components/core/admin/ContactMessages';
 import ReturnRequests from '@/components/core/admin/ReturnRequests';
 import MessageModals from '@/components/core/admin/MessageModals';
+import { Button } from '@/components/ui/Button';
 
 interface DashboardStats {
     customers: number;
@@ -148,7 +149,7 @@ export default function AdminDashboard() {
 
             <div className={styles.section}>
                 <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', borderBottom: '1px solid #333', paddingBottom: '0.5rem' }}>
-                    <button
+                    <Button
                         onClick={() => setActiveTab('messages')}
                         style={{
                             background: 'none',
@@ -162,8 +163,8 @@ export default function AdminDashboard() {
                         }}
                     >
                         Contact Messages
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         onClick={() => setActiveTab('returns')}
                         style={{
                             background: 'none',
@@ -177,7 +178,7 @@ export default function AdminDashboard() {
                         }}
                     >
                         Return Requests
-                    </button>
+                    </Button>
                 </div>
 
                 {activeTab === 'messages' && (

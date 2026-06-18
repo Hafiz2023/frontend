@@ -6,6 +6,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Hero.module.css';
+import { Button } from '@/components/ui/Button';
 
 const SLIDES = [
     {
@@ -91,7 +92,7 @@ const Hero = () => {
 
             <div className={styles.dotsContainer}>
                 {scrollSnaps.map((_, index) => (
-                    <button
+                    <Button
                         key={index}
                         className={`${styles.dot} ${index === selectedIndex ? styles.dotActive : ''}`}
                         onClick={() => scrollTo(index)}

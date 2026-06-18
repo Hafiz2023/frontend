@@ -7,6 +7,7 @@ import CursorEffect from '@/components/CursorEffect';
 import styles from './page.module.css';
 import PageHeader from '@/components/PageHeader';
 import { Briefcase, MapPin, Clock } from 'lucide-react';
+import { SearchBar } from '@/components/ui/SearchBar';
 
 interface Career {
     id: number;
@@ -140,10 +141,7 @@ export default function CareersPage() {
                     {/* Search Widget */}
                     <div className={styles.widget}>
                         <label className={styles.widgetTitle} style={{ display: 'block' }}>Search Jobs</label>
-                        <form className={styles.searchForm}>
-                            <input type="text" className={styles.searchInput} placeholder="Keywords..." />
-                            <button type="submit" className={styles.searchButton}>Search</button>
-                        </form>
+                        <SearchBar />
                     </div>
 
                     {/* Departments Widget */}

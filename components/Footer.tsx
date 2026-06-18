@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { FaFacebookF, FaInstagram, FaWhatsapp, FaLinkedinIn, FaArrowUp, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { FiChevronRight, FiSend } from 'react-icons/fi';
 import styles from './Footer.module.css';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 
 const Footer = () => {
     const scrollToTop = () => {
@@ -67,8 +69,8 @@ const Footer = () => {
                     <div className={styles.newsletter}>
                         <p className={styles.newsletterText}>Subscribe to our newsletter</p>
                         <div className={styles.inputGroup}>
-                            <input type="email" placeholder="Email address..." aria-label="Email address" />
-                            <button aria-label="Subscribe" className={styles.subscribeBtn}><FiSend /></button>
+                            <Input type="email" placeholder="Email address..." aria-label="Email address" />
+                            <Button aria-label="Subscribe" className={styles.subscribeBtn}><FiSend /></Button>
                         </div>
                     </div>
                 </div>
@@ -81,9 +83,9 @@ const Footer = () => {
                         © {new Date().getFullYear()} <span className={styles.highlight}>ZA Traders</span>. All Rights Reserved.
                     </div>
                     
-                    <button onClick={scrollToTop} className={styles.backToTop} aria-label="Back to top">
+                    <Button onClick={scrollToTop} className={styles.backToTop} aria-label="Back to top">
                         <FaArrowUp />
-                    </button>
+                    </Button>
                     
                     <div className={styles.paymentMethods}>
                         <i className="fab fa-cc-visa" title="Visa"></i>

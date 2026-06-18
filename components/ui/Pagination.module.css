@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.navButton {
+  padding: 0 0.5rem;
+}
+
+.pageInfo {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-family: var(--font-body);
+}
+
+.current {
+  font-weight: 600;
+  color: var(--text-color);
+}

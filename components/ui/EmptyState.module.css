@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  text-align: center;
+  background: var(--glass-bg);
+  border: 1px dashed rgba(0,0,0,0.2);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: var(--glass-blur);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  border-radius: 50%;
+  background-color: var(--light-gray);
+  margin-bottom: var(--space-md);
+}
+
+.icon {
+  color: #94a3b8;
+  stroke-width: 1.5;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--heading-3);
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: var(--space-xs);
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--dark-gray);
+  opacity: 0.8;
+  max-width: 400px;
+  margin-bottom: var(--space-lg);
+}
+
+.actionButton {
+  margin-top: var(--space-sm);
+}

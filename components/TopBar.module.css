@@ -1,29 +1,33 @@
 .topBar {
-    background-color: #a38348;
-    /* Bronze/Gold color */
+    background-color: var(--primary-color);
     color: white;
-    padding: 0.5rem 2rem;
+    padding: var(--space-xs) var(--container-padding);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
+    flex-wrap: wrap;
+    gap: var(--space-sm);
 }
 
 .contactInfo {
     display: flex;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: var(--space-md);
     align-items: center;
+    justify-content: center;
 }
 
 .contactItem {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-xs);
 }
 
 .socials {
     display: flex;
-    gap: 1rem;
+    gap: var(--space-sm);
+    justify-content: center;
 }
 
 .socialIcon {
@@ -38,7 +42,8 @@
 @media (max-width: 768px) {
     .topBar {
         flex-direction: column;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
+        justify-content: center;
+        text-align: center;
+        padding: var(--space-sm) var(--container-padding);
     }
 }

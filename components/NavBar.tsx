@@ -15,9 +15,9 @@ const NavBar = () => {
     ];
 
     return (
-        <nav className={styles.navbar}>
-            <Link href="/" className={styles.logo}>
-                ZA Traders
+        <nav className={styles.navbar} aria-label="Main Navigation">
+            <Link href="/" className={styles.logo} aria-label="ZA Traders Home">
+                <span className={styles.logoAccent}>Z</span>A Traders
             </Link>
             <div className={styles.navLinks}>
                 {links.map((link) => (
@@ -27,8 +27,10 @@ const NavBar = () => {
                 ))}
             </div>
             <div className={styles.actions}>
-                <Search className={styles.searchIcon} size={20} />
-                <Link href="http://localhost:5000/auth/login" className={styles.loginButton}>
+                <button aria-label="Open search" className={styles.searchButton} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.5rem' }}>
+                    <Search className={styles.searchIcon} size={20} aria-hidden="true" />
+                </button>
+                <Link href="http://localhost:5000/auth/login" className={styles.loginButton} aria-label="Log in to your account">
                     Login
                 </Link>
             </div>

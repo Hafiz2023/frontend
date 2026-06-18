@@ -1,6 +1,6 @@
 .navbar {
     background-color: white;
-    padding: 1rem 2rem;
+    padding: clamp(0.75rem, 1vw, 1.5rem) var(--container-padding);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,15 +11,25 @@
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 700;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 800;
     color: #1a1a1a;
     letter-spacing: -0.5px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.logoAccent {
+    color: var(--primary-color, #ff6b6b);
+    font-size: 1.2em;
+    margin-right: 2px;
 }
 
 .navLinks {
     display: flex;
-    gap: 2rem;
+    gap: var(--space-lg);
     align-items: center;
 }
 
@@ -27,25 +37,28 @@
     font-weight: 500;
     color: #444;
     transition: color 0.2s;
-    font-size: 1rem;
+    font-size: var(--text-base);
+    white-space: nowrap;
 }
 
 .link:hover {
-    color: #a38348;
+    color: var(--primary-hover);
 }
 
 .actions {
     display: flex;
     align-items: center;
+    gap: var(--space-sm);
 }
 
 .searchIcon {
     cursor: pointer;
     color: #444;
+    font-size: var(--text-lg);
 }
 
 .searchIcon:hover {
-    color: #a38348;
+    color: var(--primary-hover);
 }
 
 @media (max-width: 900px) {
@@ -59,11 +72,12 @@
     background-color: transparent;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
-    padding: 0.5rem 1.25rem;
+    padding: var(--space-xs) var(--space-sm);
     border-radius: 4px;
     font-weight: 500;
     transition: all 0.3s;
-    margin-left: 1rem;
+    margin-left: var(--space-sm);
+    font-size: var(--text-sm);
 }
 
 .loginButton:hover {

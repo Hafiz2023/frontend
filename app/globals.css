@@ -10,15 +10,66 @@
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
   
+  /* Glassmorphism System */
   --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-hover: rgba(255, 255, 255, 0.85);
   --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+  --glass-border-light: 1px solid rgba(255, 255, 255, 0.3);
   --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+  --glass-blur: blur(12px);
+
+  /* Shadow System */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+  /* Transition Curves */
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-snappy: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Fluid Typography (Scales from 320px to 4K) */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.5rem);
+  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 2rem);
+  --heading-3: clamp(1.5rem, 1.3rem + 1vw, 2.5rem);
+  --heading-2: clamp(2rem, 1.7rem + 1.5vw, 3.5rem);
+  --heading-1: clamp(2.5rem, 2rem + 3vw, 6rem);
+
+  /* Fluid Spacing */
+  --space-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+  --space-md: clamp(1rem, 0.8rem + 1vw, 2rem);
+  --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 3rem);
+  --space-xl: clamp(2rem, 1.5rem + 2.5vw, 5rem);
+  --space-2xl: clamp(3rem, 2rem + 5vw, 8rem);
+
+  /* Fluid Containers */
+  --container-padding: clamp(1rem, 0.5rem + 2.5vw, 4rem);
+  --container-max: 1440px;
+  --container-width: min(100% - var(--container-padding) * 2, var(--container-max));
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  min-width: 0; /* Prevents flex flex-items from overflowing */
+}
+
+/* Media reset */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent text overflow / hidden content */
+p, h1, h2, h3, h4, h5, h6, a, span, li, blockquote {
+  overflow-wrap: break-word;
 }
 
 html, body {
@@ -29,6 +80,34 @@ html, body {
   background-color: var(--bg-color);
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  width: 100%;
+}
+
+/* Fluid Container */
+.fluid-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+/* Responsive Grid Utilities */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--space-md);
+}
+
+.grid-auto-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  gap: var(--space-md);
 }
 
 a {
@@ -54,4 +133,34 @@ ul {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-color);
+}
+
+/* Smooth UI Elements */
+button {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+}
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+button:active {
+  transform: translateY(0);
+}
+
+.card {
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+input, textarea, select {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }

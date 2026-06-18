@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './Shipping.module.css';
 import Link from 'next/link';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 
 export default function ShippingPage() {
     return (
@@ -71,9 +73,9 @@ export default function ShippingPage() {
                             Enter your Order ID to see the current status of your shipment.
                         </p>
                         <div className={styles.inputGroup}>
-                            <input type="text" placeholder="Order ID (e.g. ZA-1023)" className={styles.input} />
+                            <Input type="text" placeholder="Order ID (e.g. ZA-1023)" className={styles.input} />
                         </div>
-                        <button className={styles.trackBtn}>Track Now</button>
+                        <Button className={styles.trackBtn}>Track Now</Button>
 
                         <div style={{ marginTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1.5rem' }}>
                             <h4 style={{ color: '#fff', fontWeight: 600, marginBottom: '0.5rem' }}>Need Help?</h4>
